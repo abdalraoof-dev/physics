@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الضوء — Light | CTS Physics Prep</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600;700&display=swap');
+:root{
+  --bg:#0D1117; --card:#161B22; --border:#2D3440;
+  --blue:#2563EB; --amber:#E8A000; --white:#E2E8F0; --muted:#8B96A5;
+  --green:#22c55e; --red:#ef4444;
+}
+*{box-sizing:border-box}
+html,body{margin:0; padding:0}
+body{background:var(--bg); color:var(--white); font-family:'Tajawal','Segoe UI',sans-serif; line-height:1.9; padding-bottom:70px}
+.en, .mono{font-family:'JetBrains Mono',monospace; color:#93c5fd; direction:ltr}
+.top-header{position:sticky; top:0; z-index:100; background:linear-gradient(135deg,#12213f,#0D1117); border-bottom:1px solid var(--blue); padding:14px 16px 0; text-align:center}
+.top-header h1{color:var(--amber); margin:0 0 3px; font-size:1.05rem}
+.top-header p{color:var(--muted); margin:0 0 12px; font-size:.74rem}
+.tabs{display:flex; gap:6px; overflow-x:auto; padding:0 10px 10px; scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab-btn{flex:0 0 auto; background:var(--card); color:var(--muted); border:1px solid var(--border); border-radius:20px; padding:8px 16px; font-family:'Tajawal'; font-size:.85rem; font-weight:700; cursor:pointer; white-space:nowrap; transition:.2s}
+.tab-btn.active{background:var(--blue); color:#fff; border-color:var(--blue)}
+.content-wrap{padding:16px 14px 10px; max-width:600px; margin:0 auto}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+h2{color:var(--blue); font-size:1.06rem; border-right:4px solid var(--amber); padding-right:10px; margin-top:28px; margin-bottom:10px}
+h3{color:var(--amber); font-size:.97rem; margin-top:18px; margin-bottom:8px}
+.card{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:14px 16px; margin-bottom:14px}
+ul{margin:8px 0; padding-right:20px}
+li{margin-bottom:6px}
+.key{color:var(--amber); font-weight:700}
+.formula{background:#0A0E14; border:1px dashed var(--blue); border-radius:8px; padding:10px 14px; text-align:center; font-family:'JetBrains Mono',monospace; color:#93c5fd; margin:10px 0; font-size:.92rem; direction:ltr}
+table{width:100%; border-collapse:collapse; margin:10px 0; font-size:.85rem}
+th,td{border:1px solid var(--border); padding:7px 8px; text-align:center}
+th{background:#1c2532; color:var(--amber)}
+.note{background:#1c1508; border-right:4px solid var(--amber); border-radius:8px; padding:10px 14px; margin:12px 0; font-size:.87rem}
+.imp{background:#0e1c2b; border-right:4px solid var(--blue); border-radius:8px; padding:10px 14px; margin:12px 0; font-size:.87rem}
+.compare-grid{display:flex; flex-direction:column; gap:10px}
+.compare-item{background:#0f1420; border-radius:10px; padding:10px 14px; border:1px solid var(--border)}
+.compare-item .title{color:var(--amber); font-weight:700; margin-bottom:4px}
+.section-hero{text-align:center; padding:16px 14px; border-radius:14px; background:linear-gradient(135deg,#12213f,#0D1117); border:1px solid var(--blue); margin-bottom:18px}
+.section-hero h2.hero-title{color:var(--amber); margin:0 0 4px; font-size:1.13rem; border:none; padding:0}
+.section-hero p{color:var(--muted); margin:0; font-size:.82rem}
+.badge{display:inline-block; background:var(--blue); color:#fff; padding:3px 12px; border-radius:20px; font-size:.75rem; margin-top:8px}
+.badge.amber{background:var(--amber); color:#000}
+.formula-box{background:#0A0E14; border:1px solid var(--blue); border-radius:8px; padding:10px 12px; margin:8px 0; font-family:'JetBrains Mono',monospace; color:#93c5fd; direction:ltr; text-align:center; font-size:.92rem}
+.formula-label{color:var(--amber); font-family:'Tajawal'; direction:rtl; font-size:.8rem; margin-bottom:4px; display:block}
+.q-card{background:var(--card); border:1px solid var(--border); border-radius:10px; padding:12px 14px; margin-bottom:12px}
+.q-num{color:var(--amber); font-weight:700; margin-left:4px}
+.options{list-style:none; padding:0; margin:8px 0 0}
+.options li{padding:7px 10px; margin-bottom:6px; border-radius:8px; background:#0f1420; border:1px solid var(--border); font-size:.9rem}
+details{margin-top:6px}
+summary{cursor:pointer; color:var(--blue); font-size:.85rem; font-weight:700; padding:4px 0}
+.answer-box{margin-top:6px; background:#0a1f14; border-right:3px solid var(--green); padding:8px 10px; border-radius:6px; font-size:.87rem}
+.correct{color:var(--green); font-weight:700}
+.open-q{font-size:.95rem; margin-bottom:4px}
+.exam-badge{display:inline-block; background:var(--amber); color:#000; font-size:.7rem; padding:2px 10px; border-radius:10px; font-weight:700; margin-bottom:8px}
+.section-title{background:var(--blue); color:#fff; padding:8px 14px; border-radius:10px; font-size:.98rem; margin-top:26px; margin-bottom:12px; text-align:center}
+.mini-toc{background:var(--card); border:1px solid var(--border); border-radius:10px; padding:12px 16px; margin-bottom:18px}
+.mini-toc a{color:var(--blue); display:block; padding:4px 0; text-decoration:none; font-size:.9rem}
+.progress{width:100%; background:var(--card); border-radius:20px; height:8px; margin-bottom:16px; overflow:hidden; border:1px solid var(--border)}
+.progress-fill{height:100%; background:var(--blue); width:0%; transition:width .3s}
+.counter{color:var(--muted); font-size:.85rem; margin-bottom:10px; text-align:center}
+.flashcard-wrap{width:100%; perspective:1200px; margin-bottom:16px}
+.flashcard{position:relative; width:100%; min-height:230px; transform-style:preserve-3d; transition:transform .5s; cursor:pointer}
+.flashcard.flipped{transform:rotateY(180deg)}
+.face{position:absolute; inset:0; backface-visibility:hidden; border-radius:16px; padding:22px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; border:1px solid var(--border)}
+.front{background:linear-gradient(135deg,#161B22,#0D1117); border-color:var(--blue)}
+.back{background:linear-gradient(135deg,#1c1508,#161B22); border-color:var(--amber); transform:rotateY(180deg); font-size:.94rem; line-height:1.7}
+.q-label, .a-label{font-size:.7rem; color:var(--muted); text-transform:uppercase; margin-bottom:10px; letter-spacing:1px}
+.q-text{font-size:1rem; font-weight:700; color:var(--white)}
+.a-text{color:var(--white)}
+.tap-hint{position:absolute; bottom:10px; font-size:.7rem; color:var(--muted)}
+.fc-controls{display:flex; gap:10px; width:100%}
+.btn{flex:1; padding:12px; border-radius:10px; border:none; font-size:.95rem; font-family:'Tajawal'; font-weight:700; cursor:pointer}
+.btn-prev{background:var(--card); color:var(--white); border:1px solid var(--border)}
+.btn-next{background:var(--blue); color:#fff}
+.btn-shuffle{background:var(--amber); color:#000; flex:0 0 auto; padding:12px 16px}
+.footer{text-align:center; color:var(--muted); font-size:.8rem; margin-top:40px}
+</style>
+
+<style>
+/* ===== Floating Subject Navigator (injected) ===== */
+.lecnav-fab{
+  position:fixed; bottom:18px; left:18px; z-index:999;
+  width:52px; height:52px; border-radius:50%;
+  background:linear-gradient(135deg,#2563EB,#1d4ed8);
+  color:#fff; border:none; box-shadow:0 4px 14px rgba(37,99,235,.5);
+  font-size:1.4rem; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  transition:transform .2s;
+}
+.lecnav-fab:active{transform:scale(.92)}
+.lecnav-overlay{
+  position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:1000;
+  display:none; align-items:flex-end; justify-content:center;
+  backdrop-filter:blur(2px);
+}
+.lecnav-overlay.open{display:flex}
+.lecnav-sheet{
+  width:100%; max-width:600px; background:#161B22; border:1px solid #2D3440;
+  border-bottom:none; border-radius:20px 20px 0 0; padding:16px 14px 26px;
+  max-height:80vh; overflow-y:auto; animation:lecnavUp .25s ease;
+  font-family:'Tajawal','Segoe UI',sans-serif;
+}
+@keyframes lecnavUp{from{transform:translateY(30px); opacity:0} to{transform:translateY(0); opacity:1}}
+.lecnav-sheet h3{
+  color:#E8A000; margin:0 0 12px; font-size:1.05rem; text-align:center;
+  border:none; padding:0;
+}
+.lecnav-home{
+  display:block; text-align:center; color:#93c5fd; text-decoration:none;
+  font-size:.85rem; margin-bottom:14px; padding:8px; border:1px dashed #2D3440;
+  border-radius:10px;
+}
+.lecnav-list{display:flex; flex-direction:column; gap:8px}
+.lecnav-item{
+  display:flex; align-items:center; gap:10px; padding:10px 12px;
+  border-radius:12px; background:#0f1420; border:1px solid #2D3440;
+  color:#E2E8F0; text-decoration:none; font-size:.9rem; transition:.15s;
+}
+.lecnav-item:active{background:#1c2532}
+.lecnav-item.current{border-color:#2563EB; background:#0e1c2b}
+.lecnav-item .lecnav-num{
+  flex:0 0 auto; width:30px; height:30px; border-radius:50%;
+  background:#2563EB; color:#fff; display:flex; align-items:center; justify-content:center;
+  font-weight:700; font-size:.85rem; font-family:'JetBrains Mono',monospace;
+}
+.lecnav-item.current .lecnav-num{background:#E8A000; color:#000}
+.lecnav-item .lecnav-title{flex:1}
+.lecnav-close{
+  position:absolute; top:10px; left:14px; background:none; border:none;
+  color:#8B96A5; font-size:1.3rem; cursor:pointer; padding:4px 8px;
+}
+.lecnav-sheet{position:relative}
+</style>
+
+</head>
+<body>
+
+<!-- ===== Floating Subject Navigator (injected) ===== -->
+<button class="lecnav-fab" id="lecnavFab" onclick="document.getElementById('lecnavOverlay').classList.add('open')" aria-label="التنقل بين الفصول">☰</button>
+<div class="lecnav-overlay" id="lecnavOverlay" onclick="if(event.target===this) this.classList.remove('open')">
+  <div class="lecnav-sheet">
+    <button class="lecnav-close" onclick="document.getElementById('lecnavOverlay').classList.remove('open')">✕</button>
+    <h3>📚 التنقل بين الفصول</h3>
+    <a class="lecnav-home" href="index.html">⌂ العودة للفهرس الرئيسي</a>
+    <div class="lecnav-list">
+  <a class="lecnav-item" href="physics1.html"><span class="lecnav-num">⚡</span><span class="lecnav-title">الكهربائية</span></a>
+  <a class="lecnav-item" href="physics2.html"><span class="lecnav-num">🧲</span><span class="lecnav-title">المغناطيسية</span></a>
+  <a class="lecnav-item current" href="physics3.html"><span class="lecnav-num">💡</span><span class="lecnav-title">الضوء</span></a>
+    </div>
+  </div>
+</div>
+
+
+<div class="top-header">
+  <h1>💡 الضوء — Light</h1>
+  <p>مادة الفيزياء | فصل مستقل — CTS Physics Prep Series</p>
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="summary">📘 الملخص</button>
+    <button class="tab-btn" data-tab="cheat">🧾 ورقة غش</button>
+    <button class="tab-btn" data-tab="bank">❓ بنك أسئلة</button>
+    <button class="tab-btn" data-tab="flash">⚡ فلاش كاردز</button>
+  </div>
+</div>
+
+<div class="content-wrap">
+
+<!-- ================= TAB 1: SUMMARY ================= -->
+<div class="tab-panel active" id="tab-summary">
+
+<div class="section-hero">
+  <h2 class="hero-title">📘 الملخص المكثف</h2>
+  <p>الضوء — كل النقاط الأساسية بشكل منظم</p>
+</div>
+
+<div class="mini-toc">
+  <a href="#s1">① طبيعة الضوء</a>
+  <a href="#s2">② انتشار وسرعة الضوء</a>
+  <a href="#s3">③ الانعكاس</a>
+  <a href="#s4">④ الانكسار ومعامل الانكسار</a>
+  <a href="#s5">⑤ الانعكاس الداخلي الكلي</a>
+  <a href="#s6">⑥ التداخل والحيود</a>
+  <a href="#s7">⑦ المرايا المستوية والكروية</a>
+  <a href="#s8">⑧ العدسات</a>
+  <a href="#s9">⑨ القانون العام للمرايا والعدسات</a>
+  <a href="#s10">⑩ الأجهزة البصرية</a>
+</div>
+
+<h2 id="s1">① طبيعة الضوء — Nature of Light</h2>
+<div class="card">
+  <ul>
+    <li>الضوء نوع من الطاقة، ويمكن أن تتحول الطاقة الضوئية إلى صور أخرى من الطاقة (كهربائية، كيميائية، حرارية) والعكس.</li>
+    <li><span class="key">النظرية الجسيمية (نيوتن، 1670):</span> الضوء عبارة عن جسيمات تنطلق من مصدره. نجحت بتفسير الانعكاس والانكسار، لكنها فشلت بتفسير التداخل والحيود والاستقطاب.</li>
+    <li><span class="key">النظرية الموجية (هويجنز، ثم يونج وفرينل، 1801):</span> الضوء عبارة عن موجات تنطلق من مصدره على شكل موجات. نجحت بتفسير كل ظواهر الضوء المعروفة (الانعكاس، الانكسار، التداخل، الحيود، الاستقطاب) لكن فشلت بتفسير ظاهرة الفعل الكهروضوئي.</li>
+    <li><span class="key">النظرية الحديثة (أينشتاين، مطلع القرن العشرين):</span> عودة للمفهوم الجسيمي عبر مفهوم الفوتون — حزمة طاقة محددة. الضوء له طبيعة مزدوجة (Dual nature): يسلك سلوك موجة تحت ظروف معينة (كالتداخل والحيود، متوافقة مع نظرية هويجنز)، ويسلك سلوك جسيم (فوتون) تحت ظروف أخرى (كالفعل الكهروضوئي، متوافقة مع نظرية نيوتن).</li>
+    <li><span class="key">لويس دي بروي (1924):</span> قدّم مفهوم الازدواجية الموجية للمادة، فكل جسيم مادي له خاصية موجية مرتبطة به.</li>
+  </ul>
+</div>
+
+<h2 id="s2">② انتشار وسرعة الضوء</h2>
+<div class="card">
+  <ul>
+    <li><span class="key">انتشار الضوء (Propagation)</span>: ينتشر الضوء من مصدره بجميع الاتجاهات بخطوط مستقيمة، وهذا يفسر تكون الظلال وأشباه الظلال.</li>
+    <li><span class="key">سرعة الضوء (Velocity of light)</span>: أثبتت التجارب أن سرعة الضوء بالفراغ ثابتة، وتقل سرعته بالأوساط الشفافة (الماء، الزجاج) حسب كثافتها البصرية. سرعته بالطرق أبطأ من الماء، وبالماء أبطأ من الفراغ.</li>
+    <li>تعتمد سرعة الضوء بالمواد على الطول الموجي للضوء نفسه.</li>
+  </ul>
+  <div class="formula-box"><span class="formula-label">سرعة الضوء بالفراغ</span>c = 2.998×10⁸ m/s</div>
+</div>
+
+<h2 id="s3">③ الانعكاس — Reflection of Light</h2>
+<div class="card">
+  <ul>
+    <li>ظاهرة ارتداد الأشعة الضوئية عن الأجسام الملساء مثل المرايا المستوية، تجعل رؤية الأجسام بواسطة العين ممكنة.</li>
+    <li><span class="key">الزاوية الطارئة (θᵢ)</span>: الزاوية المحصورة بين الشعاع الطارئ والعمود المقام على السطح.</li>
+    <li><span class="key">زاوية الانعكاس (θr)</span>: الزاوية المحصورة بين الشعاع المنعكس والعمود المقام على السطح.</li>
+  </ul>
+  <div class="imp">
+    <b>قانون الانعكاس:</b> 1) زاوية الانعكاس تساوي زاوية الطروق (θᵢ=θr). 2) الشعاع الطارئ والشعاع المنعكس والعمود المقام على السطح تقع جميعها بمستوٍ واحد.
+  </div>
+</div>
+
+<h2 id="s4">④ الانكسار ومعامل الانكسار — Refraction & Refractive Index</h2>
+<div class="card">
+  <ul>
+    <li><span class="key">الانكسار</span>: ظاهرة انحناء مسار الضوء عند انتقاله من وسط شفاف إلى آخر مختلف بالكثافة البصرية.</li>
+    <li>إذا انتقل الضوء من وسط أقل كثافة إلى وسط أكبر كثافة: ينكسر الشعاع مقترباً من العمود المقام.</li>
+    <li>إذا انتقل الضوء من وسط أكبر كثافة إلى وسط أقل كثافة: ينكسر الشعاع مبتعداً عن العمود المقام.</li>
+  </ul>
+  <div class="formula-box"><span class="formula-label">معامل الانكسار</span>n = c / v</div>
+  <ul><li><span class="key">c</span> سرعة الضوء بالفراغ، <span class="key">v</span> سرعة الضوء بالوسط.</li></ul>
+  <h3>قانون سنِل (قانون الانكسار)</h3>
+  <div class="formula-box">n₁·sinθ₁ = n₂·sinθ₂</div>
+  <ul><li>حالة خاصة: إذا انتقل الضوء من الهواء (n₁=1) إلى وسط معامل انكساره n: <span class="mono">sinθ₁/sinθ₂ = n</span></li></ul>
+</div>
+
+<h2 id="s5">⑤ الانعكاس الداخلي الكلي — Total Internal Reflection</h2>
+<div class="card">
+  <ul>
+    <li>عند انتقال الضوء من وسط أكبر كثافة إلى وسط أقل كثافة، تكون زاوية الانكسار دائماً أكبر من زاوية الطروق.</li>
+    <li>كلما زادت زاوية الطروق، تزداد زاوية الانكسار، حتى تصل زاوية الانكسار لقيمة 90° عند زاوية طروق معينة تُسمى <span class="key">الزاوية الحرجة (critical angle) θc</span>.</li>
+    <li>إذا زادت زاوية الطروق عن الزاوية الحرجة، لا ينكسر الشعاع بل ينعكس بالكامل داخل الوسط نفسه — وهذا ما يُعرف بـ<span class="key">الانعكاس الداخلي الكلي</span>.</li>
+  </ul>
+  <div class="formula-box"><span class="formula-label">الزاوية الحرجة</span>sinθc = n₂/n₁</div>
+  <div class="note">📌 مثال: عند انتقال الضوء من ماء البحر (n=1.33) إلى الهواء الخارجي (n=1)، الزاوية الحرجة θc = sin⁻¹(1/1.33) ≈ 48.7°</div>
+</div>
+
+<h2 id="s6">⑥ التداخل والحيود — Interference & Diffraction</h2>
+<div class="card">
+  <ul>
+    <li><span class="key">التداخل (Interference)</span>: ينتج عن تراكب شعاعين ضوئيين لهما نفس الطول الموجي والتردد ومتوافقين بالطور (Coherent).</li>
+    <li>إذا كان فرق الطور بينهما مضاعف زوجي لـπ → تداخل بنّاء (تقوية).</li>
+    <li>إذا كان فرق الطور بينهما مضاعف فردي لـπ → تداخل هدّام (إعدام).</li>
+    <li><span class="key">الحيود (Diffraction)</span>: ظاهرة انحراف الضوء عن انتشاره بخطوط مستقيمة عند مروره بحافة حادة، فينتشر بمنطقة الظل الهندسي.</li>
+  </ul>
+</div>
+
+<h2 id="s7">⑦ المرايا المستوية والكروية</h2>
+<div class="card">
+  <h3>المرايا المستوية</h3>
+  <ul>
+    <li>بُعد الصورة عن المرآة يساوي بُعد الجسم عن المرآة (S'=S).</li>
+    <li>طول الصورة يساوي طول الجسم (y'=y).</li>
+    <li>الصورة خيالية ومعتدلة.</li>
+  </ul>
+  <div class="formula-box"><span class="formula-label">التكبير</span>m = y'/y = 1</div>
+
+  <h3>المرايا الكروية</h3>
+  <div class="compare-grid">
+    <div class="compare-item"><div class="title">المرآة المقعرة (Concave)</div>سطحها العاكس هو الوجه المقعر، تجمع الأشعة الساقطة عليها — تُسمى المرآة اللامة (Converging).</div>
+    <div class="compare-item"><div class="title">المرآة المحدبة (Convex)</div>سطحها العاكس هو الوجه المحدب، تُفرّق الأشعة الساقطة عليها — تُسمى المرآة المفرقة (Diverging).</div>
+  </div>
+  <h3>مصطلحات أساسية</h3>
+  <ul>
+    <li><span class="key">مركز التكور (C)</span>: مركز الكرة التي المرآة جزء منها.</li>
+    <li><span class="key">قطب المرآة (V)</span>: مركز المرآة نفسه.</li>
+    <li><span class="key">نصف قطر التكور (R)</span>: المسافة بين مركز التكور وقطب المرآة.</li>
+    <li><span class="key">المحور الأصلي</span>: الخط الذي يصل بين قطب المرآة ومركز التكور.</li>
+    <li><span class="key">البؤرة (F)</span>: النقطة التي تجتمع فيها الأشعة الموازية للمحور الأصلي بعد انعكاسها (بالمرآة المقعرة)، أو التي تبدو الأشعة كأنها متفرقة منها (بالمرآة المحدبة).</li>
+    <li><span class="key">البعد البؤري (f)</span>: المسافة بين البؤرة وقطب المرآة.</li>
+  </ul>
+  <div class="note">📌 قواعد رسم الأشعة بالمرايا الكروية: 1) شعاع مار بمركز التكور ينعكس على نفسه. 2) شعاع مواز للمحور الأصلي ينعكس مارّاً بالبؤرة. 3) شعاع مار بالبؤرة ينعكس موازياً للمحور الأصلي.</div>
+</div>
+
+<h2 id="s8">⑧ العدسات — Lenses</h2>
+<div class="card">
+  <div class="compare-grid">
+    <div class="compare-item"><div class="title">العدسة المحدبة (Convex)</div>تُسمى اللامة (Converging) — تجمع الأشعة المنكسرة.</div>
+    <div class="compare-item"><div class="title">العدسة المقعرة (Concave)</div>تُسمى المفرقة (Diverging) — تُفرّق الأشعة المنكسرة.</div>
+  </div>
+  <h3>مصطلحات أساسية</h3>
+  <ul>
+    <li><span class="key">المحور الأصلي</span>: الخط الذي يصل بين مركز العدسة ومركز تكور سطح العدسة.</li>
+    <li><span class="key">المركز البصري</span>: المركز الهندسي للعدسة.</li>
+    <li><span class="key">البؤرة (F)</span>: النقطة التي تتجمع فيها الأشعة الموازية للمحور الأصلي بعد انكسارها (بؤرة حقيقية بالعدسة المحدبة)، أو النقطة التي تبدو الأشعة متفرقة منها (بؤرة تقديرية بالعدسة المقعرة).</li>
+    <li><span class="key">البعد البؤري (f)</span>: المسافة بين البؤرة والمركز البصري للعدسة.</li>
+  </ul>
+  <div class="note">📌 قواعد رسم الأشعة بالعدسات الرقيقة: 1) شعاع مار بمركز العدسة لا يتغير اتجاهه. 2) شعاع مواز للمحور الأصلي ينكسر مارّاً بالبؤرة (أو امتداده بالمقعرة). 3) شعاع مار بالبؤرة (أو امتداده) ينكسر موازياً للمحور الأصلي.</div>
+  <h3>خصائص الصور بالعدسة المحدبة حسب موضع الجسم</h3>
+  <table>
+    <tr><th>موضع الجسم</th><th>نوع الصورة</th></tr>
+    <tr><td>أبعد من 2F</td><td>حقيقية، مقلوبة، مصغّرة</td></tr>
+    <tr><td>عند 2F</td><td>حقيقية، مقلوبة، مساوية بالحجم</td></tr>
+    <tr><td>بين F و2F</td><td>حقيقية، مقلوبة، مكبّرة</td></tr>
+    <tr><td>عند F</td><td>بلا نهاية</td></tr>
+    <tr><td>أقرب من F</td><td>خيالية، معتدلة، مكبّرة</td></tr>
+  </table>
+</div>
+
+<h2 id="s9">⑨ القانون العام للمرايا والعدسات</h2>
+<div class="card">
+  <p>يربط بين بُعد الجسم S وبُعد الصورة S' والبعد البؤري f، وينطبق على المرايا والعدسات معاً:</p>
+  <div class="formula-box"><span class="formula-label">القانون العام</span>1/S + 1/S' = 1/f</div>
+  <div class="formula-box"><span class="formula-label">التكبير</span>m = y'/y = S'/S</div>
+  <h3>قواعد الإشارات</h3>
+  <ul>
+    <li><span class="key">f</span> موجب بالمرآة المقعرة والعدسة المحدبة (اللامتين)، سالب بالمرآة المحدبة والعدسة المقعرة (المفرقتين).</li>
+    <li><span class="key">S</span> (بُعد الجسم) موجب إذا كان الجسم حقيقياً.</li>
+    <li><span class="key">S'</span> (بُعد الصورة) موجب إذا كانت الصورة حقيقية، سالب إذا كانت خيالية.</li>
+    <li>إذا كان <span class="key">|m|>1</span> فالصورة مكبّرة. إذا كان <span class="key">|m|<1</span> فالصورة مصغّرة.</li>
+    <li>إشارة m السالبة تعني الصورة مقلوبة، والموجبة تعني معتدلة.</li>
+  </ul>
+</div>
+
+<h2 id="s10">⑩ الأجهزة البصرية — Optical Instruments</h2>
+<div class="card">
+  <h3>المجهر البسيط (Simple Microscope)</h3>
+  <ul>
+    <li>يتكون من عدسة محدبة واحدة، يوضع الجسم المراد تكبيره بين العدسة وبؤرتها.</li>
+    <li>الصورة النهائية خيالية، معتدلة، ومكبّرة.</li>
+  </ul>
+  <div class="formula-box"><span class="formula-label">تكبير المجهر البسيط (الصورة عند 25cm من العين)</span>m = 25/S</div>
+
+  <h3>المجهر المركب (Compound Microscope)</h3>
+  <ul>
+    <li>يتكون من عدستين محدبتين: <span class="key">العدسة الشيئية (Objective)</span> و<span class="key">العدسة العينية (Ocular)</span>.</li>
+    <li>التكبير الكلي = حاصل ضرب تكبير العدسة الشيئية بتكبير العدسة العينية.</li>
+  </ul>
+  <div class="formula-box"><span class="formula-label">التكبير الكلي للمجهر المركب</span>m = m₁ × m₂</div>
+
+  <h3>آلة التصوير (Camera)</h3>
+  <ul><li>تتكون من عدسة محدبة، فتحة معتمة، وفيلم حساس. تُكوّن صورة حقيقية مقلوبة على الفيلم.</li></ul>
+
+  <h3>المنظار العيني (Ophthalmoscope)</h3>
+  <ul><li>يُستخدم لفحص باطن العين، يتكون من مصدر ضوئي، مرآة، وعدسة محدبة تُشكّل صورة مكبّرة لشبكية العين.</li></ul>
+</div>
+
+<div class="footer">CTS Prep Series — ملخص الضوء | الفيزياء العامة</div>
+</div>
+
+<!-- ================= TAB 2: CHEAT SHEET ================= -->
+<div class="tab-panel" id="tab-cheat">
+<div class="section-hero"><h2 class="hero-title">🧾 ورقة الغش</h2><p>كل المعادلات والقوانين بدون شرح — للمراجعة السريعة قبل الامتحان</p></div>
+
+<h2>سرعة الضوء</h2>
+<div class="card">
+  <div class="formula-box">c = 2.998×10⁸ m/s (بالفراغ)</div>
+</div>
+
+<h2>الانعكاس</h2>
+<div class="card">
+  <div class="formula-box">θᵢ = θr</div>
+</div>
+
+<h2>الانكسار</h2>
+<div class="card">
+  <div class="formula-box">n = c / v</div>
+  <div class="formula-box">n₁·sinθ₁ = n₂·sinθ₂</div>
+  <div class="formula-box">من الهواء لوسط n: sinθ₁/sinθ₂ = n</div>
+</div>
+
+<h2>الانعكاس الداخلي الكلي</h2>
+<div class="card">
+  <div class="formula-box">sinθc = n₂ / n₁</div>
+</div>
+
+<h2>المرايا والعدسات — القانون العام</h2>
+<div class="card">
+  <div class="formula-box">1/S + 1/S' = 1/f</div>
+  <div class="formula-box">m = y'/y = S'/S</div>
+</div>
+
+<h2>قواعد الإشارات</h2>
+<div class="card">
+  <table>
+    <tr><th>الكمية</th><th>موجب</th><th>سالب</th></tr>
+    <tr><td>f</td><td>مرآة مقعرة / عدسة محدبة</td><td>مرآة محدبة / عدسة مقعرة</td></tr>
+    <tr><td>S</td><td>جسم حقيقي</td><td>جسم خيالي</td></tr>
+    <tr><td>S'</td><td>صورة حقيقية</td><td>صورة خيالية</td></tr>
+  </table>
+  <div class="note">|m|>1 مكبّرة | |m|<1 مصغّرة | m سالب = مقلوبة | m موجب = معتدلة</div>
+</div>
+
+<h2>الأجهزة البصرية</h2>
+<div class="card">
+  <div class="formula-box">مجهر بسيط: m = 25/S</div>
+  <div class="formula-box">مجهر مركب: m = m₁ × m₂</div>
+</div>
+
+<h2>قواعد رسم الأشعة (مرايا كروية)</h2>
+<div class="card">
+  <ul>
+    <li>شعاع بمركز التكور → ينعكس على نفسه</li>
+    <li>شعاع مواز للمحور → ينعكس بالبؤرة</li>
+    <li>شعاع بالبؤرة → ينعكس موازياً للمحور</li>
+  </ul>
+</div>
+
+<h2>قواعد رسم الأشعة (عدسات رقيقة)</h2>
+<div class="card">
+  <ul>
+    <li>شعاع بمركز العدسة → لا يتغير اتجاهه</li>
+    <li>شعاع مواز للمحور → ينكسر بالبؤرة</li>
+    <li>شعاع بالبؤرة → ينكسر موازياً للمحور</li>
+  </ul>
+</div>
+
+<div class="footer">CTS Prep Series — ورقة غش الضوء</div>
+</div>
+
+<!-- ================= TAB 3: QUESTION BANK ================= -->
+<div class="tab-panel" id="tab-bank">
+<div class="section-hero"><h2 class="hero-title">❓ بنك الأسئلة</h2><p>اختيار من متعدد، أسئلة مفتوحة، ومحاكاة امتحان</p></div>
+
+<div class="section-title">① اختيار من متعدد</div>
+
+<div class="q-card">
+  <p class="open-q"><span class="q-num">1.</span> أي نظرية فشلت بتفسير ظاهرة الفعل الكهروضوئي؟</p>
+  <ul class="options">
+    <li>A) النظرية الجسيمية</li><li>B) النظرية الموجية</li><li>C) النظرية الحديثة</li><li>D) لا شيء مما سبق</li>
+  </ul>
+  <details><summary>عرض الجواب</summary><div class="answer-box"><span class="correct">الجواب: B) النظرية الموجية</span></div></details>
+</div>
+
+<div class="q-card">
+  <p class="open-q"><span class="q-num">2.</span> إذا انتقل الضوء من الهواء إلى الماء، فإن سرعته:</p>
+  <ul class="options">
+    <li>A) تزداد</li><li>B) تقل</li><li>C) تبقى ثابتة</li><li>D) تصبح صفراً</li>
+  </ul>
+  <details><summary>عرض الجواب</summary><div class="answer-box"><span class="correct">الجواب: B) تقل</span> — لأن الماء أكبر كثافة بصرية من الهواء</div></details>
+</div>
+
+<div class="q-card">
+  <p class="open-q"><span class="q-num">3.</span> الانعكاس الداخلي الكلي يحدث عندما:</p>
+  <ul class="options">
+    <li>A) تكون زاوية الطروق أصغر من الزاوية الحرجة</li><li>B) تكون زاوية الطروق أكبر من الزاوية الحرجة والانتقال من وسط أكثف لأقل كثافة</li><li>C) الضوء ينتقل من وسط أقل كثافة لأكثر كثافة</li><li>D) لا علاقة له بالزوايا</li>
+  </ul>
+  <details><summary>عرض الجواب</summary><div class="answer-box"><span class="correct">الجواب: B</span></div></details>
+</div>
+
+<div class="q-card">
+  <p class="open-q"><span class="q-num">4.</span> بالمرآة المقعرة، إذا وُضع الجسم بين البؤرة ومركز التكور، فإن الصورة تكون:</p>
+  <ul class="options">
+    <li>A) خيالية معتدلة مصغّرة</li><li>B) حقيقية مقلوبة مكبّرة</li><li>C) حقيقية مقلوبة مصغّرة</li><li>D) خيالية معتدلة مكبّرة</li>
+  </ul>
+  <details><summary>عرض الجواب</summary><div class="answer-box"><span class="correct">الجواب: B</span></div></details>
+</div>
+
+<div class="q-card">
+  <p class="open-q"><span class="q-num">5.</span> ما نوع الصورة المتكونة بالمرآة المحدبة دائماً؟</p>
+  <ul class="options">
+    <li>A) حقيقية مقلوبة مكبّرة</li><li>B) خيالية معتدلة مصغّرة</li><li>C) حقيقية معتدلة</li><li>D) خيالية مقلوبة</li>
+  </ul>
+  <details><summary>عرض الجواب</summary><div class="answer-box"><span class="correct">الجواب: B</span></div></details>
+</div>
+
+<div class="q-card">
+  <p class="open-q"><span class="q-num">6.</span> عندما يكون الجسم عند البعد البؤري بالضبط بعدسة محدبة، تكون الصورة:</p>
+  <ul class="options">
+    <li>A) حقيقية مساوية بالحجم</li><li>B) خيالية مكبّرة</li><li>C) بلا نهاية (لا تتكون صورة محددة)</li><li>D) مقلوبة مصغّرة</li>
+  </ul>
+  <details><summary>عرض الجواب</summary><div class="answer-box"><span class="correct">الجواب: C</span></div></details>
+</div>
+
+<div class="q-card">
+  <p class="open-q"><span class="q-num">7.</span> بالقانون العام للمرايا والعدسات، إذا كانت S' سالبة فإن الصورة:</p>
+  <ul class="options">
+    <li>A) حقيقية</li><li>B) خيالية</li><li>C) مكبّرة دائماً</li><li>D) لا يمكن تحديد نوعها</li>
+  </ul>
+  <details><summary>عرض الجواب</summary><div class="answer-box"><span class="correct">الجواب: B) خيالية</span></div></details>
+</div>
+
+<div class="section-title">② أسئلة مفتوحة</div>
+
+<div class="q-card">
+  <p class="open-q"><b>1.</b> اشرح مفهوم الازدواجية الموجية-الجسيمية للضوء (Dual nature)، مع ذكر ظاهرة تدعم كل جانب.</p>
+  <details><summary>عرض نموذج الجواب</summary><div class="answer-box">الضوء يسلك أحياناً سلوك الموجة، مثل ظاهرتي التداخل والحيود اللتين تُفسَّران فقط بالنظرية الموجية. وأحياناً يسلك سلوك الجسيم (فوتون يحمل طاقة محددة)، مثل ظاهرة الفعل الكهروضوئي التي فشلت النظرية الموجية بتفسيرها ونجحت النظرية الجسيمية الحديثة (فكرة الفوتون) بتفسيرها.</div></details>
+</div>
+
+<div class="q-card">
+  <p class="open-q"><b>2.</b> وضح متى يحدث الانعكاس الداخلي الكلي واشرح الشرطين الضروريين لحدوثه.</p>
+  <details><summary>عرض نموذج الجواب</summary><div class="answer-box">يحدث الانعكاس الداخلي الكلي بشرطين: 1) انتقال الضوء من وسط أكبر كثافة بصرية إلى وسط أقل كثافة بصرية. 2) أن تكون زاوية الطروق أكبر من الزاوية الحرجة θc، وعندها لا ينكسر الضوء إطلاقاً بل ينعكس بالكامل داخل الوسط الأول.</div></details>
+</div>
+
+<div class="q-card">
+  <p class="open-q"><b>3.</b> ما الفرق بين البؤرة الحقيقية والبؤرة التقديرية (الوهمية)؟ أعط مثالاً لكل نوع.</p>
+  <details><summary>عرض نموذج الجواب</summary><div class="answer-box">البؤرة الحقيقية هي نقطة تتجمع فيها الأشعة فعلياً بعد الانعكاس أو الانكسار، مثل بؤرة المرآة المقعرة أو العدسة المحدبة. البؤرة التقديرية (الوهمية) هي نقطة تبدو الأشعة وكأنها متفرقة منها لكنها لا تلتقي فيها فعلياً، مثل بؤرة المرآة المحدبة أو العدسة المقعرة.</div></details>
+</div>
+
+<div class="q-card">
+  <p class="open-q"><b>4.</b> اشرح كيف يعمل المجهر المركب على تكبير الصورة بمرحلتين متتاليتين.</p>
+  <details><summary>عرض نموذج الجواب</summary><div class="answer-box">يوضع الجسم المراد تكبيره قريباً من العدسة الشيئية (بين F و2F) فتُكوّن صورة حقيقية مقلوبة مكبّرة. هذه الصورة تقع ضمن البعد البؤري للعدسة العينية، فتعمل العدسة العينية كمجهر بسيط وتُكوّن صورة نهائية خيالية مكبّرة أكثر. التكبير الكلي = تكبير العدسة الشيئية × تكبير العدسة العينية.</div></details>
+</div>
+
+<div class="section-title">③ محاكاة امتحان</div>
+<div class="q-card">
+  <span class="exam-badge">⏱ محاكاة — 30 دقيقة</span>
+  <p style="font-size:.9rem; color:var(--muted)">أجب بدون فتح الملخص. راجع الأجوبة بالنهاية فقط.</p>
+
+  <p class="open-q"><b>س1 (3 علامات):</b> إذا كان معامل انكسار الزجاج التاجي 1.66 وسرعة الضوء بالفراغ c=3×10⁸m/s، احسب سرعة الضوء بهذا الزجاج.</p>
+  <p class="open-q"><b>س2 (5 علامات):</b> طُمِر شعاع ضوئي من الماء (n₁=1.33) بزاوية θ₁=30° على لوح من الزجاج (n₂=1.52). أوجد زاوية الانكسار θ₂.</p>
+  <p class="open-q"><b>س3 (4 علامات):</b> وُضع جسم طوله 5cm أمام مرآة مقعرة بعدها البؤري 15cm، على بُعد 40cm من المرآة. أوجد بُعد الصورة وطولها وحدد نوعها.</p>
+  <p class="open-q"><b>س4 (4 علامات):</b> وُضع جسم على بُعد 45cm من عدسة محدبة بعدها البؤري 15cm. أوجد بُعد الصورة والتكبير، وحدد طبيعة الصورة.</p>
+  <p class="open-q"><b>س5 (4 علامات):</b> اشرح الفرق بين النظرية الجسيمية والنظرية الموجية للضوء، وما الذي دفع العلماء لتبني النظرية الحديثة (الفوتون)؟</p>
+
+  <details><summary>📖 عرض نموذج الحل الكامل</summary>
+  <div class="answer-box">
+  <b>س1:</b> n=c/v → v=c/n = 3×10⁸/1.66 ≈ 1.807×10⁸ m/s<br><br>
+  <b>س2:</b> n₁sinθ₁=n₂sinθ₂ → sinθ₂ = (1.33×sin30°)/1.52 = 0.4375 → θ₂ ≈ 25.9°<br><br>
+  <b>س3:</b> 1/S+1/S'=1/f → 1/40+1/S'=1/15 → 1/S'=1/15−1/40=0.0417 → S'=24cm (موجبة → صورة حقيقية). m=S'/S=24/40=0.6 → y'=0.6×5=3cm، الصورة حقيقية مقلوبة ومصغّرة.<br><br>
+  <b>س4:</b> 1/45+1/S'=1/15 → 1/S'=1/15−1/45=0.0444 → S'=22.5cm (موجبة → حقيقية). m=S'/S=22.5/45=0.5 (سالبة الإشارة الفعلية لأنها مقلوبة) → الصورة حقيقية مقلوبة مصغّرة.<br><br>
+  <b>س5:</b> النظرية الجسيمية (نيوتن) اعتبرت الضوء جسيمات، ونجحت بتفسير الانعكاس والانكسار لكن فشلت بتفسير التداخل والحيود. النظرية الموجية (هويجنز، يونج) اعتبرت الضوء موجات، ونجحت بتفسير كل الظواهر المعروفة وقتها لكن فشلت بتفسير الفعل الكهروضوئي. دفع هذا الفشل الأخير أينشتاين لتقديم مفهوم الفوتون: حزمة طاقة محددة، فامتلك الضوء طبيعة مزدوجة (موجة وجسيم معاً) حسب طبيعة التجربة.
+  </div></details>
+</div>
+
+<div class="footer">CTS Prep Series — بنك أسئلة الضوء</div>
+</div>
+
+<!-- ================= TAB 4: FLASHCARDS ================= -->
+<div class="tab-panel" id="tab-flash">
+<div class="section-hero"><h2 class="hero-title">⚡ بطاقات المراجعة</h2><p>اضغط البطاقة لقلبها وعرض الجواب</p></div>
+
+<div class="progress"><div class="progress-fill" id="progressFill"></div></div>
+<div class="counter" id="counter">1 / 22</div>
+
+<div class="flashcard-wrap">
+  <div class="flashcard" id="flashcard" onclick="flipCard()">
+    <div class="face front">
+      <div class="q-label">سؤال</div>
+      <div class="q-text" id="qText"></div>
+      <div class="tap-hint">👆 اضغط لعرض الجواب</div>
+    </div>
+    <div class="face back">
+      <div class="a-label">جواب</div>
+      <div class="a-text" id="aText"></div>
+    </div>
+  </div>
+</div>
+
+<div class="fc-controls">
+  <button class="btn btn-prev" onclick="prevCard()">◀ السابق</button>
+  <button class="btn btn-shuffle" onclick="shuffleCards()">🔀</button>
+  <button class="btn btn-next" onclick="nextCard()">التالي ▶</button>
+</div>
+</div>
+
+<div class="footer">CTS Prep Series — الضوء | الفيزياء العامة</div>
+
+</div>
+
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+});
+
+const cards = [
+  {q:"من صاحب النظرية الجسيمية للضوء وماذا اقترحت؟", a:"نيوتن، اقترحت أن الضوء عبارة عن جسيمات تنطلق من مصدره"},
+  {q:"ما الظاهرتان اللتان فشلت النظرية الجسيمية بتفسيرهما؟", a:"التداخل والحيود (وأيضاً الاستقطاب)"},
+  {q:"من أصحاب النظرية الموجية للضوء؟", a:"هويجنز، ثم طوّرها يونج وفرينل"},
+  {q:"ما الظاهرة التي فشلت النظرية الموجية بتفسيرها؟", a:"ظاهرة الفعل الكهروضوئي"},
+  {q:"من قدّم مفهوم الفوتون وماذا يعني؟", a:"أينشتاين، الفوتون حزمة طاقة ضوئية محددة"},
+  {q:"ماذا يعني مصطلح 'الطبيعة المزدوجة' للضوء؟", a:"الضوء يسلك سلوك موجة أحياناً (تداخل، حيود) وسلوك جسيم أحياناً أخرى (فعل كهروضوئي)"},
+  {q:"كم قيمة سرعة الضوء بالفراغ؟", a:"c = 2.998×10⁸ m/s"},
+  {q:"ما نص قانون الانعكاس؟", a:"زاوية الانعكاس تساوي زاوية الطروق (θᵢ=θr)، والشعاعان والعمود المقام بمستوٍ واحد"},
+  {q:"ما معادلة معامل الانكسار؟", a:"n = c/v"},
+  {q:"ما نص قانون سنِل (الانكسار)؟", a:"n₁sinθ₁ = n₂sinθ₂"},
+  {q:"متى ينكسر الشعاع مقترباً من العمود المقام؟", a:"عند انتقاله من وسط أقل كثافة إلى وسط أكبر كثافة بصرية"},
+  {q:"ما هي الزاوية الحرجة؟", a:"زاوية الطروق التي تجعل زاوية الانكسار تساوي 90 درجة بالضبط"},
+  {q:"متى يحدث الانعكاس الداخلي الكلي؟", a:"عند الانتقال من وسط أكثف لأقل كثافة، وزاوية الطروق أكبر من الزاوية الحرجة"},
+  {q:"ما معادلة الزاوية الحرجة؟", a:"sinθc = n₂/n₁"},
+  {q:"ما نوع الصورة المتكونة بالمرآة المستوية دائماً؟", a:"خيالية، معتدلة، بنفس حجم الجسم، وبنفس بُعده عن المرآة"},
+  {q:"ما اسم المرآة التي تجمع الأشعة الساقطة عليها؟", a:"المرآة المقعرة (Concave) — تُسمى اللامة (Converging)"},
+  {q:"ما اسم العدسة التي تُفرّق الأشعة المنكسرة؟", a:"العدسة المقعرة (Concave) — تُسمى المفرقة (Diverging)"},
+  {q:"ما القانون العام الذي يربط بين بُعد الجسم والصورة والبعد البؤري؟", a:"1/S + 1/S' = 1/f"},
+  {q:"ما معادلة التكبير بالمرايا والعدسات؟", a:"m = y'/y = S'/S"},
+  {q:"متى تكون f موجبة بقاعدة الإشارات؟", a:"بالمرآة المقعرة والعدسة المحدبة (الأدوات اللامة)"},
+  {q:"ماذا يعني S' سالبة؟", a:"الصورة خيالية"},
+  {q:"ما معادلة تكبير المجهر البسيط عندما الصورة عند 25cm؟", a:"m = 25/S"}
+];
+
+let currentIndex = 0;
+let isFlipped = false;
+
+function renderCard(){
+  document.getElementById('qText').textContent = cards[currentIndex].q;
+  document.getElementById('aText').textContent = cards[currentIndex].a;
+  document.getElementById('counter').textContent = (currentIndex+1) + ' / ' + cards.length;
+  document.getElementById('progressFill').style.width = ((currentIndex+1)/cards.length*100) + '%';
+  const card = document.getElementById('flashcard');
+  card.classList.remove('flipped');
+  isFlipped = false;
+}
+
+function flipCard(){
+  isFlipped = !isFlipped;
+  document.getElementById('flashcard').classList.toggle('flipped', isFlipped);
+}
+
+function nextCard(){
+  currentIndex = (currentIndex + 1) % cards.length;
+  renderCard();
+}
+
+function prevCard(){
+  currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+  renderCard();
+}
+
+function shuffleCards(){
+  for(let i = cards.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i+1));
+    [cards[i], cards[j]] = [cards[j], cards[i]];
+  }
+  currentIndex = 0;
+  renderCard();
+}
+
+renderCard();
+</script>
+
+</body>
+</html>

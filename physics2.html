@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المغناطيسية — Magnetism | CTS Physics Prep</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600;700&display=swap');
+:root{
+  --bg:#0D1117; --card:#161B22; --border:#2D3440;
+  --blue:#2563EB; --amber:#E8A000; --white:#E2E8F0; --muted:#8B96A5;
+  --green:#22c55e; --red:#ef4444;
+}
+*{box-sizing:border-box}
+html,body{margin:0; padding:0}
+body{background:var(--bg); color:var(--white); font-family:'Tajawal','Segoe UI',sans-serif; line-height:1.9; padding-bottom:70px}
+.en, .mono{font-family:'JetBrains Mono',monospace; color:#93c5fd; direction:ltr}
+.top-header{position:sticky; top:0; z-index:100; background:linear-gradient(135deg,#12213f,#0D1117); border-bottom:1px solid var(--blue); padding:14px 16px 0; text-align:center}
+.top-header h1{color:var(--amber); margin:0 0 3px; font-size:1.05rem}
+.top-header p{color:var(--muted); margin:0 0 12px; font-size:.74rem}
+.tabs{display:flex; gap:6px; overflow-x:auto; padding:0 10px 10px; scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab-btn{flex:0 0 auto; background:var(--card); color:var(--muted); border:1px solid var(--border); border-radius:20px; padding:8px 16px; font-family:'Tajawal'; font-size:.85rem; font-weight:700; cursor:pointer; white-space:nowrap; transition:.2s}
+.tab-btn.active{background:var(--blue); color:#fff; border-color:var(--blue)}
+.content-wrap{padding:16px 14px 10px; max-width:600px; margin:0 auto}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+h2{color:var(--blue); font-size:1.06rem; border-right:4px solid var(--amber); padding-right:10px; margin-top:28px; margin-bottom:10px}
+h3{color:var(--amber); font-size:.97rem; margin-top:18px; margin-bottom:8px}
+.card{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:14px 16px; margin-bottom:14px}
+ul{margin:8px 0; padding-right:20px}
+li{margin-bottom:6px}
+.key{color:var(--amber); font-weight:700}
+.formula{background:#0A0E14; border:1px dashed var(--blue); border-radius:8px; padding:10px 14px; text-align:center; font-family:'JetBrains Mono',monospace; color:#93c5fd; margin:10px 0; font-size:.92rem; direction:ltr}
+table{width:100%; border-collapse:collapse; margin:10px 0; font-size:.85rem}
+th,td{border:1px solid var(--border); padding:7px 8px; text-align:center}
+th{background:#1c2532; color:var(--amber)}
+.note{background:#1c1508; border-right:4px solid var(--amber); border-radius:8px; padding:10px 14px; margin:12px 0; font-size:.87rem}
+.imp{background:#0e1c2b; border-right:4px solid var(--blue); border-radius:8px; padding:10px 14px; margin:12px 0; font-size:.87rem}
+.compare-grid{display:flex; flex-direction:column; gap:10px}
+.compare-item{background:#0f1420; border-radius:10px; padding:10px 14px; border:1px solid var(--border)}
+.compare-item .title{color:var(--amber); font-weight:700; margin-bottom:4px}
+.section-hero{text-align:center; padding:16px 14px; border-radius:14px; background:linear-gradient(135deg,#12213f,#0D1117); border:1px solid var(--blue); margin-bottom:18px}
+.section-hero h2.hero-title{color:var(--amber); margin:0 0 4px; font-size:1.13rem; border:none; padding:0}
+.section-hero p{color:var(--muted); margin:0; font-size:.82rem}
+.badge{display:inline-block; background:var(--blue); color:#fff; padding:3px 12px; border-radius:20px; font-size:.75rem; margin-top:8px}
+.badge.amber{background:var(--amber); color:#000}
+.formula-box{background:#0A0E14; border:1px solid var(--blue); border-radius:8px; padding:10px 12px; margin:8px 0; font-family:'JetBrains Mono',monospace; color:#93c5fd; direction:ltr; text-align:center; font-size:.92rem}
+.formula-label{color:var(--amber); font-family:'Tajawal'; direction:rtl; font-size:.8rem; margin-bottom:4px; display:block}
+.q-card{background:var(--card); border:1px solid var(--border); border-radius:10px; padding:12px 14px; margin-bottom:12px}
+.q-num{color:var(--amber); font-weight:700; margin-left:4px}
+.options{list-style:none; padding:0; margin:8px 0 0}
+.options li{padding:7px 10px; margin-bottom:6px; border-radius:8px; background:#0f1420; border:1px solid var(--border); font-size:.9rem}
+details{margin-top:6px}
+summary{cursor:pointer; color:var(--blue); font-size:.85rem; font-weight:700; padding:4px 0}
+.answer-box{margin-top:6px; background:#0a1f14; border-right:3px solid var(--green); padding:8px 10px; border-radius:6px; font-size:.87rem}
+.correct{color:var(--green); font-weight:700}
+.open-q{font-size:.95rem; margin-bottom:4px}
+.exam-badge{display:inline-block; background:var(--amber); color:#000; font-size:.7rem; padding:2px 10px; border-radius:10px; font-weight:700; margin-bottom:8px}
+.section-title{background:var(--blue); color:#fff; padding:8px 14px; border-radius:10px; font-size:.98rem; margin-top:26px; margin-bottom:12px; text-align:center}
+.mini-toc{background:var(--card); border:1px solid var(--border); border-radius:10px; padding:12px 16px; margin-bottom:18px}
+.mini-toc a{color:var(--blue); display:block; padding:4px 0; text-decoration:none; font-size:.9rem}
+.progress{width:100%; background:var(--card); border-radius:20px; height:8px; margin-bottom:16px; overflow:hidden; border:1px solid var(--border)}
+.progress-fill{height:100%; background:var(--blue); width:0%; transition:width .3s}
+.counter{color:var(--muted); font-size:.85rem; margin-bottom:10px; text-align:center}
+.flashcard-wrap{width:100%; perspective:1200px; margin-bottom:16px}
+.flashcard{position:relative; width:100%; min-height:230px; transform-style:preserve-3d; transition:transform .5s; cursor:pointer}
+.flashcard.flipped{transform:rotateY(180deg)}
+.face{position:absolute; inset:0; backface-visibility:hidden; border-radius:16px; padding:22px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; border:1px solid var(--border)}
+.front{background:linear-gradient(135deg,#161B22,#0D1117); border-color:var(--blue)}
+.back{background:linear-gradient(135deg,#1c1508,#161B22); border-color:var(--amber); transform:rotateY(180deg); font-size:.94rem; line-height:1.7}
+.q-label, .a-label{font-size:.7rem; color:var(--muted); text-transform:uppercase; margin-bottom:10px; letter-spacing:1px}
+.q-text{font-size:1rem; font-weight:700; color:var(--white)}
+.a-text{color:var(--white)}
+.tap-hint{position:absolute; bottom:10px; font-size:.7rem; color:var(--muted)}
+.fc-controls{display:flex; gap:10px; width:100%}
+.btn{flex:1; padding:12px; border-radius:10px; border:none; font-size:.95rem; font-family:'Tajawal'; font-weight:700; cursor:pointer}
+.btn-prev{background:var(--card); color:var(--white); border:1px solid var(--border)}
+.btn-next{background:var(--blue); color:#fff}
+.btn-shuffle{background:var(--amber); color:#000; flex:0 0 auto; padding:12px 16px}
+.footer{text-align:center; color:var(--muted); font-size:.8rem; margin-top:40px}
+</style>
+
+<style>
+/* ===== Floating Subject Navigator (injected) ===== */
+.lecnav-fab{
+  position:fixed; bottom:18px; left:18px; z-index:999;
+  width:52px; height:52px; border-radius:50%;
+  background:linear-gradient(135deg,#2563EB,#1d4ed8);
+  color:#fff; border:none; box-shadow:0 4px 14px rgba(37,99,235,.5);
+  font-size:1.4rem; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  transition:transform .2s;
+}
+.lecnav-fab:active{transform:scale(.92)}
+.lecnav-overlay{
+  position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:1000;
+  display:none; align-items:flex-end; justify-content:center;
+  backdrop-filter:blur(2px);
+}
+.lecnav-overlay.open{display:flex}
+.lecnav-sheet{
+  width:100%; max-width:600px; background:#161B22; border:1px solid #2D3440;
+  border-bottom:none; border-radius:20px 20px 0 0; padding:16px 14px 26px;
+  max-height:80vh; overflow-y:auto; animation:lecnavUp .25s ease;
+  font-family:'Tajawal','Segoe UI',sans-serif;
+}
+@keyframes lecnavUp{from{transform:translateY(30px); opacity:0} to{transform:translateY(0); opacity:1}}
+.lecnav-sheet h3{
+  color:#E8A000; margin:0 0 12px; font-size:1.05rem; text-align:center;
+  border:none; padding:0;
+}
+.lecnav-home{
+  display:block; text-align:center; color:#93c5fd; text-decoration:none;
+  font-size:.85rem; margin-bottom:14px; padding:8px; border:1px dashed #2D3440;
+  border-radius:10px;
+}
+.lecnav-list{display:flex; flex-direction:column; gap:8px}
+.lecnav-item{
+  display:flex; align-items:center; gap:10px; padding:10px 12px;
+  border-radius:12px; background:#0f1420; border:1px solid #2D3440;
+  color:#E2E8F0; text-decoration:none; font-size:.9rem; transition:.15s;
+}
+.lecnav-item:active{background:#1c2532}
+.lecnav-item.current{border-color:#2563EB; background:#0e1c2b}
+.lecnav-item .lecnav-num{
+  flex:0 0 auto; width:30px; height:30px; border-radius:50%;
+  background:#2563EB; color:#fff; display:flex; align-items:center; justify-content:center;
+  font-weight:700; font-size:.85rem; font-family:'JetBrains Mono',monospace;
+}
+.lecnav-item.current .lecnav-num{background:#E8A000; color:#000}
+.lecnav-item .lecnav-title{flex:1}
+.lecnav-close{
+  position:absolute; top:10px; left:14px; background:none; border:none;
+  color:#8B96A5; font-size:1.3rem; cursor:pointer; padding:4px 8px;
+}
+.lecnav-sheet{position:relative}
+</style>
+
+</head>
+<body>
+
+<!-- ===== Floating Subject Navigator (injected) ===== -->
+<button class="lecnav-fab" id="lecnavFab" onclick="document.getElementById('lecnavOverlay').classList.add('open')" aria-label="التنقل بين الفصول">☰</button>
+<div class="lecnav-overlay" id="lecnavOverlay" onclick="if(event.target===this) this.classList.remove('open')">
+  <div class="lecnav-sheet">
+    <button class="lecnav-close" onclick="document.getElementById('lecnavOverlay').classList.remove('open')">✕</button>
+    <h3>📚 التنقل بين الفصول</h3>
+    <a class="lecnav-home" href="index.html">⌂ العودة للفهرس الرئيسي</a>
+    <div class="lecnav-list">
+  <a class="lecnav-item" href="physics1.html"><span class="lecnav-num">⚡</span><span class="lecnav-title">الكهربائية</span></a>
+  <a class="lecnav-item current" href="physics2.html"><span class="lecnav-num">🧲</span><span class="lecnav-title">المغناطيسية</span></a>
+  <a class="lecnav-item" href="physics3.html"><span class="lecnav-num">💡</span><span class="lecnav-title">الضوء</span></a>
+    </div>
+  </div>
+</div>
+
+
+<div class="top-header">
+  <h1>🧲 المغناطيسية — Magnetism</h1>
+  <p>مادة الفيزياء | فصل مستقل — CTS Physics Prep Series</p>
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="summary">📘 الملخص</button>
+    <button class="tab-btn" data-tab="cheat">🧾 ورقة غش</button>
+    <button class="tab-btn" data-tab="bank">❓ بنك أسئلة</button>
+    <button class="tab-btn" data-tab="flash">⚡ فلاش كاردز</button>
+  </div>
+</div>
+
+<div class="content-wrap">
+
+<!-- ================= TAB 1: SUMMARY ================= -->
+<div class="tab-panel active" id="tab-summary">
+
+<div class="section-hero">
+  <h2 class="hero-title">📘 الملخص المكثف</h2>
+  <p>المغناطيسية — كل النقاط الأساسية بشكل منظم</p>
+</div>
+
+<div class="mini-toc">
+  <a href="#s1">① أساسيات المغناطيسية</a>
+  <a href="#s2">② المجال المغناطيسي والقوة</a>
+  <a href="#s3">③ حركة جسيم مشحون بمجال مغناطيسي منتظم</a>
+  <a href="#s4">④ القوة على موصل يحمل تياراً</a>
+  <a href="#s5">⑤ قانون بيوت-سافارت</a>
+  <a href="#s6">⑥ تطبيقات قانون بيوت-سافارت</a>
+  <a href="#s7">⑦ الفيض المغناطيسي</a>
+</div>
+
+<h2 id="s1">① أساسيات المغناطيسية</h2>
+<div class="card">
+  <ul>
+    <li>اكتُشفت أجسام تجذب قطع الحديد بمدينة ماغنيسيا اليونانية، سُميت هذه الخاصية بـ<span class="key">المغناطيسية</span>.</li>
+    <li>الأرض نفسها تمثل مغناطيساً كبيراً — أساس عمل البوصلة.</li>
+  </ul>
+  <h3>معلومات أساسية عن المغناطيس الدائم</h3>
+  <ul>
+    <li>كل مغناطيس يحوي قطبين: <span class="key">شمالي (N)</span> و<span class="key">جنوبي (S)</span>.</li>
+    <li>لا يمكن وجود مغناطيس بقطب منفرد — الأقطاب المغناطيسية توجد دائماً بشكل أزواج. إذا قُطعت قطعة مغناطيس، كل قطعة جديدة تتكون من قطبين شمالي وجنوبي.</li>
+    <li>الأقطاب المتشابهة تتنافر، والمختلفة تتجاذب (كالشحنات الكهربائية).</li>
+    <li>المنطقة المحيطة بالمغناطيس تُسمى <span class="key">المجال المغناطيسي</span> وتحتوي على خطوط المجال المغناطيسي.</li>
+    <li>يوجد المغناطيس بأشكال متعددة: قطعة مستقيمة، حدوة فرس (U)، حرف مغناطيسي.</li>
+  </ul>
+</div>
+
+<h2 id="s2">② المجال المغناطيسي والقوة المغناطيسية</h2>
+<div class="card">
+  <ul>
+    <li>المجال المغناطيسي B هو المنطقة التي يظهر فيها تأثير المغناطيس، ويمكن الكشف عنه باستخدام إبرة بوصلة أو برادة الحديد.</li>
+  </ul>
+  <div class="formula-box"><span class="formula-label">العلاقة بين B وH</span>B = μ₀·H</div>
+  <ul>
+    <li><span class="key">μ₀</span> معامل نفاذية الفراغ.</li>
+    <li>وحدة B: <span class="key">تسلا (T)</span>. ووحدة شائعة أخرى: <span class="key">الجاوس (G)</span> حيث 1T = 10⁴G.</li>
+  </ul>
+  <div class="formula-box"><span class="formula-label">القوة المغناطيسية على شحنة متحركة</span>F_B = q·v·B</div>
+  <ul>
+    <li>القوة المغناطيسية تكون <span class="key">عمودية</span> على كل من اتجاه السرعة v واتجاه المجال المغناطيسي B.</li>
+    <li>تُستخدم <span class="key">قاعدة اليد اليمنى</span> لتحديد اتجاه القوة.</li>
+    <li>إذا تحرك الجسم المشحون بموازاة اتجاه المجال → F_B = 0.</li>
+    <li>الشحنة الموجبة تتأثر بقوة بعكس اتجاه القوة المؤثرة على شحنة سالبة بنفس ظروف الحركة.</li>
+  </ul>
+  <div class="note">📌 الفرق بين القوة الكهربائية والمغناطيسية: الكهربائية تعمل باتجاه المجال (أو عكسه)، بينما المغناطيسية تعمل عمودياً على كل من السرعة والمجال.</div>
+</div>
+
+<h2 id="s3">③ حركة جسيم مشحون بمجال مغناطيسي منتظم</h2>
+<div class="card">
+  <ul>
+    <li>عندما يتحرك جسيم مشحون بمجال مغناطيسي عمودي على مستوى حركته، يتحرك الجسيم بمسار <span class="key">دائري</span>.</li>
+    <li>سبب ذلك: القوة المغناطيسية تُغيّر اتجاه السرعة باستمرار لكن لا تُغيّر مقدارها (لأنها دائماً عمودية على السرعة).</li>
+    <li>إذا كانت q موجبة: الدوران بعكس عقارب الساعة. إذا كانت q سالبة: الدوران مع عقارب الساعة.</li>
+  </ul>
+  <p>نصف قطر المسار ينتج من مساواة القوة المغناطيسية بقوة الطرد المركزية:</p>
+  <div class="formula-box"><span class="formula-label">نصف قطر المسار الدائري</span>r = m·v / (q·B)</div>
+  <div class="formula-box"><span class="formula-label">السرعة الزاوية</span>ω = v/r = qB/m</div>
+  <div class="formula-box"><span class="formula-label">الزمن الدوري</span>T = 2πr/v = 2πm/(qB)</div>
+  <ul><li>نصف قطر المسار يتناسب طردياً مع كمية الحركة الخطية ومقدار الشحنة والمجال المغناطيسي.</li></ul>
+</div>
+
+<h2 id="s4">④ القوة المغناطيسية المؤثرة على موصل يحمل تياراً</h2>
+<div class="card">
+  <ul>
+    <li>التيار الكهربائي بالسلك = مجموعة من الجسيمات المشحونة المتحركة، لذا فإن القوة الناتجة على السلك = المجموع الاتجاهي للقوى المفردة على كل الشحنات المكونة للتيار.</li>
+    <li>يُحدد اتجاه المجال المغناطيسي داخل الورقة (⊗ رمز B_in) وخارجها (⊙ رمز B_out).</li>
+  </ul>
+</div>
+
+<h2 id="s5">⑤ قانون بيوت-سافارت — Biot-Savart Law</h2>
+<div class="card">
+  <ul>
+    <li>توصل العالمان بيوت وسافارت لقانون يمكن به حساب المجال المغناطيسي لأي دارة كهربائية، من دراسة عملية للمجال المغناطيسي الناتج عن مرور تيار كهربائي بسلك وتأثيره على إبرة مغناطيسية مجاورة.</li>
+    <li>الحث المغناطيسي dB الناتج عن عنصر طوله ds من سلك يحمل تياراً I عند نقطة تبعد r:</li>
+  </ul>
+  <div class="formula-box"><span class="formula-label">قانون بيوت-سافارت (الصيغة التفاضلية)</span>dB = (μ₀/4π) · I·ds·sinθ / r²</div>
+  <ul><li>ثابت التناسب: <span class="key">μ₀/4π = 10⁻⁷ Wb/A·m</span></li></ul>
+</div>
+
+<h2 id="s6">⑥ تطبيقات قانون بيوت-سافارت</h2>
+<div class="card">
+  <h3>1) المجال المغناطيسي لموصل مستقيم</h3>
+  <div class="formula-box"><span class="formula-label">عند نقطة تبعد a عن سلك مستقيم طويل يحمل تياراً I</span>B = μ₀·I / (2πa)</div>
+
+  <h3>2) المجال المغناطيسي لموصل دائري (ملف دائري)</h3>
+  <div class="formula-box"><span class="formula-label">عند مركز الملف</span>B = μ₀·N·I / (2a)</div>
+  <ul><li><span class="key">N</span> عدد لفات الملف، <span class="key">a</span> نصف قطر الملف.</li></ul>
+  <div class="formula-box"><span class="formula-label">العزم المغناطيسي للملف</span>P_m = N·I·A</div>
+
+  <h3>3) المجال المغناطيسي لملف حلزوني (سولينويد)</h3>
+  <div class="formula-box"><span class="formula-label">عند منتصف الملف الطويل</span>B = μ₀·N·I</div>
+  <div class="formula-box"><span class="formula-label">عند طرف الملف</span>B = μ₀·N·I / 2</div>
+</div>
+
+<h2 id="s7">⑦ الفيض المغناطيسي — Magnetic Flux</h2>
+<div class="card">
+  <ul>
+    <li>يُعرّف بعدد خطوط الفيض التي تنفذ عمودياً خلال سطح ما.</li>
+  </ul>
+  <div class="formula-box"><span class="formula-label">عندما يكون B منتظماً وعمودياً على سطح مساحته A</span>Φ = B·A</div>
+  <div class="formula-box"><span class="formula-label">عندما يصنع السطح زاوية θ مع اتجاه خطوط القوة</span>Φ = B·A·cosθ</div>
+  <div class="formula-box"><span class="formula-label">لسطح غير منتظم الشكل (تكامل)</span>Φ = ∫B·cosθ·dA</div>
+  <ul>
+    <li>وحدة الفيض المغناطيسي: <span class="key">الويبر (Wb)</span></li>
+    <li><span class="key">الفيض المغناطيسي الكلي خلال أي سطح مغلق يكون دائماً صفراً</span> — لأنه لا توجد أقطاب مغناطيسية منفردة.</li>
+  </ul>
+</div>
+
+<div class="footer">CTS Prep Series — ملخص المغناطيسية | الفيزياء العامة</div>
+</div>
+
+<!-- ================= TAB 2: CHEAT SHEET ================= -->
+<div class="tab-panel" id="tab-cheat">
+<div class="section-hero"><h2 class="hero-title">🧾 ورقة الغش</h2><p>كل المعادلات والقوانين بدون شرح — للمراجعة السريعة قبل الامتحان</p></div>
+
+<h2>المجال والقوة المغناطيسية</h2>
+<div class="card">
+  <div class="formula-box">B = μ₀·H</div>
+  <div class="formula-box">F_B = q·v·B</div>
+  <div class="formula-box">1 T = 10⁴ G</div>
+</div>
+
+<h2>حركة جسيم مشحون بمجال منتظم</h2>
+<div class="card">
+  <div class="formula-box">r = m·v / (q·B)</div>
+  <div class="formula-box">ω = v/r = qB/m</div>
+  <div class="formula-box">T = 2πm/(qB)</div>
+</div>
+
+<h2>قانون بيوت-سافارت</h2>
+<div class="card">
+  <div class="formula-box">dB = (μ₀/4π)·I·ds·sinθ / r²</div>
+  <div class="formula-box">μ₀/4π = 10⁻⁷ Wb/A·m</div>
+</div>
+
+<h2>تطبيقات بيوت-سافارت</h2>
+<div class="card">
+  <div class="formula-box">سلك مستقيم: B = μ₀I / (2πa)</div>
+  <div class="formula-box">مركز ملف دائري: B = μ₀NI / (2a)</div>
+  <div class="formula-box">عزم مغناطيسي: P_m = N·I·A</div>
+  <div class="formula-box">منتصف سولينويد: B = μ₀NI</div>
+  <div class="formula-box">طرف سولينويد: B = μ₀NI / 2</div>
+</div>
+
+<h2>الفيض المغناطيسي</h2>
+<div class="card">
+  <div class="formula-box">Φ = B·A</div>
+  <div class="formula-box">Φ = B·A·cosθ</div>
+  <div class="formula-box">Φ = ∫B·cosθ·dA</div>
+  <div class="formula-box">الفيض خلال سطح مغلق = 0 دائماً</div>
+</div>
+
+<h2>ثوابت مهمة</h2>
+<div class="card">
+  <table>
+    <tr><th>الرمز</th><th>القيمة</th></tr>
+    <tr><td>μ₀/4π</td><td>10⁻⁷ Wb/A·m</td></tr>
+    <tr><td>1 تسلا (T)</td><td>10⁴ جاوس (G)</td></tr>
+  </table>
+</div>
+
+<div class="footer">CTS Prep Series — ورقة غش المغناطيسية</div>
+</div>
+
+<!-- ================= TAB 3: QUESTION BANK ================= -->
+<div class="tab-panel" id="tab-bank">
+<div class="section-hero"><h2 class="hero-title">❓ بنك الأسئلة</h2><p>اختيار من متعدد، أسئلة مفتوحة، ومحاكاة امتحان</p></div>
+
+<div class="section-title">① اختيار من متعدد</div>
+
+<div class="q-card">
+  <p class="open-q"><span class="q-num">1.</span> هل يمكن وجود مغناطيس بقطب واحد منفرد؟</p>
+  <ul class="options">
+    <li>A) نعم دائماً</li><li>B) لا، الأقطاب توجد دائماً بشكل أزواج</li><li>C) فقط بالمغناطيس الصناعي</li><li>D) فقط بمغناطيس الأرض</li>
+  </ul>
+  <details><summary>عرض الجواب</summary><div class="answer-box"><span class="correct">الجواب: B</span></div></details>
+</div>
+
+<div class="q-card">
+  <p class="open-q"><span class="q-num">2.</span> اتجاه القوة المغناطيسية المؤثرة على شحنة متحركة يكون:</p>
+  <ul class="options">
+    <li>A) بموازاة السرعة</li><li>B) بموازاة المجال المغناطيسي</li><li>C) عمودياً على كل من السرعة والمجال</li><li>D) عكس اتجاه المجال دائماً</li>
+  </ul>
+  <details><summary>عرض الجواب</summary><div class="answer-box"><span class="correct">الجواب: C</span></div></details>
+</div>
+
+<div class="q-card">
+  <p class="open-q"><span class="q-num">3.</span> جسيم مشحون يتحرك موازياً لاتجاه المجال المغناطيسي، ما مقدار القوة المغناطيسية المؤثرة عليه؟</p>
+  <ul class="options">
+    <li>A) أقصى قيمة ممكنة</li><li>B) صفر</li><li>C) نصف القيمة القصوى</li><li>D) لا يمكن تحديدها</li>
+  </ul>
+  <details><summary>عرض الجواب</summary><div class="answer-box"><span class="correct">الجواب: B) صفر</span></div></details>
+</div>
+
+<div class="q-card">
+  <p class="open-q"><span class="q-num">4.</span> عند تحرك جسيم بشحنة سالبة بمجال مغناطيسي منتظم عمودي على مستوى حركته، يكون اتجاه الدوران:</p>
+  <ul class="options">
+    <li>A) بعكس عقارب الساعة</li><li>B) مع عقارب الساعة</li><li>C) بمسار مستقيم</li><li>D) بمسار حلزوني</li>
+  </ul>
+  <details><summary>عرض الجواب</summary><div class="answer-box"><span class="correct">الجواب: B</span></div></details>
+</div>
+
+<div class="q-card">
+  <p class="open-q"><span class="q-num">5.</span> ما قيمة الفيض المغناطيسي الكلي خلال أي سطح مغلق؟</p>
+  <ul class="options">
+    <li>A) يساوي دائماً B×A</li><li>B) يساوي صفراً دائماً</li><li>C) يعتمد على شكل السطح</li><li>D) لا نهائي</li>
+  </ul>
+  <details><summary>عرض الجواب</summary><div class="answer-box"><span class="correct">الجواب: B</span> — لعدم وجود أقطاب مغناطيسية منفردة</div></details>
+</div>
+
+<div class="q-card">
+  <p class="open-q"><span class="q-num">6.</span> نصف قطر المسار الدائري لجسيم مشحون بمجال مغناطيسي يتناسب:</p>
+  <ul class="options">
+    <li>A) طردياً مع كمية الحركة، عكسياً مع الشحنة والمجال</li><li>B) عكسياً مع كل شيء</li><li>C) طردياً مع كل شيء</li><li>D) لا علاقة له بالشحنة</li>
+  </ul>
+  <details><summary>عرض الجواب</summary><div class="answer-box"><span class="correct">الجواب: A</span> — r = mv/(qB)</div></details>
+</div>
+
+<div class="section-title">② أسئلة مفتوحة</div>
+
+<div class="q-card">
+  <p class="open-q"><b>1.</b> اشرح لماذا يتحرك جسيم مشحون بمسار دائري عند دخوله بمجال مغناطيسي منتظم عمودي على مستوى حركته.</p>
+  <details><summary>عرض نموذج الجواب</summary><div class="answer-box">لأن القوة المغناطيسية تكون دائماً عمودية على اتجاه السرعة، فهي تُغيّر اتجاه الحركة باستمرار دون أن تُغيّر مقدار السرعة (لا تبذل شغلاً). هذا يجعل الجسيم يتحرك بمسار دائري ثابت نصف القطر، حيث القوة المغناطيسية تلعب دور قوة الجذب المركزي.</div></details>
+</div>
+
+<div class="q-card">
+  <p class="open-q"><b>2.</b> ما الفرق الجوهري بين اتجاه تأثير القوة الكهربائية واتجاه تأثير القوة المغناطيسية على شحنة متحركة؟</p>
+  <details><summary>عرض نموذج الجواب</summary><div class="answer-box">القوة الكهربائية تؤثر بموازاة اتجاه المجال الكهربائي (أو بعكسه حسب إشارة الشحنة). أما القوة المغناطيسية فتؤثر بشكل عمودي دائماً على كل من اتجاه سرعة الشحنة واتجاه المجال المغناطيسي معاً، وتُحدَّد باستخدام قاعدة اليد اليمنى.</div></details>
+</div>
+
+<div class="q-card">
+  <p class="open-q"><b>3.</b> وضح الفكرة الأساسية لقانون بيوت-سافارت وما الهدف منه.</p>
+  <details><summary>عرض نموذج الجواب</summary><div class="answer-box">قانون بيوت-سافارت يسمح بحساب المجال المغناطيسي الناتج عن مرور تيار كهربائي بأي دارة، بتقسيم السلك لعناصر طولية صغيرة ds وحساب مساهمة كل عنصر بالمجال dB عند نقطة معينة، ثم إجراء عملية تكامل على طول السلك بالكامل للحصول على المجال الكلي B.</div></details>
+</div>
+
+<div class="section-title">③ محاكاة امتحان</div>
+<div class="q-card">
+  <span class="exam-badge">⏱ محاكاة — 20 دقيقة</span>
+  <p style="font-size:.9rem; color:var(--muted)">أجب بدون فتح الملخص. راجع الأجوبة بالنهاية فقط.</p>
+
+  <p class="open-q"><b>س1 (4 علامات):</b> بروتون يتحرك بمسار دائري نصف قطره 14cm بمجال مغناطيسي منتظم مقداره 0.35T. أوجد السرعة الخطية للبروتون. (كتلة البروتون m=1.67×10⁻²⁷kg، شحنته q=1.6×10⁻¹⁹C)</p>
+  <p class="open-q"><b>س2 (4 علامات):</b> سلك مستقيم طويل يمر به تيار شدته 5A. احسب المجال المغناطيسي عند نقطة تبعد 10cm عن السلك.</p>
+  <p class="open-q"><b>س3 (4 علامات):</b> ملف دائري عدد لفاته 200 لفة ونصف قطره 20cm يمر به تيار 3.5A. احسب المجال المغناطيسي عند مركز الملف والعزم المغناطيسي له.</p>
+  <p class="open-q"><b>س4 (3 علامات):</b> اشرح لماذا يكون الفيض المغناطيسي الكلي خلال أي سطح مغلق يساوي صفراً دائماً.</p>
+  <p class="open-q"><b>س5 (3 علامات):</b> ما الفرق بين اتجاه دوران جسيم موجب الشحنة واتجاه دوران جسيم سالب الشحنة عند تحركهما بمجال مغناطيسي منتظم بنفس الظروف؟</p>
+
+  <details><summary>📖 عرض نموذج الحل الكامل</summary>
+  <div class="answer-box">
+  <b>س1:</b> من r=mv/(qB) → v = rqB/m = (0.14)(1.6×10⁻¹⁹)(0.35)/(1.67×10⁻²⁷) ≈ 4.69×10⁶ m/s<br><br>
+  <b>س2:</b> B = μ₀I/(2πa) = (4π×10⁻⁷ × 5)/(2π × 0.10) = 10⁻⁵ T<br><br>
+  <b>س3:</b> B = μ₀NI/(2a) = (4π×10⁻⁷ × 200 × 3.5)/(2×0.20) ≈ 1.1×10⁻³ T. العزم: P_m = NIA = 200×3.5×π(0.20)² ≈ 87.96 A·m²<br><br>
+  <b>س4:</b> لأن الأقطاب المغناطيسية توجد دائماً بشكل أزواج (شمالي وجنوبي) ولا يمكن وجود قطب منفرد، فكل خط مجال يدخل السطح المغلق لا بد أن يخرج منه بنقطة أخرى، فيكون المجموع الجبري للفيض الداخل والخارج صفراً دائماً.<br><br>
+  <b>س5:</b> إذا كانت الشحنة موجبة يكون اتجاه الدوران بعكس عقارب الساعة، وإذا كانت سالبة يكون الدوران مع عقارب الساعة — أي الاتجاهان متعاكسان تماماً رغم تطابق باقي ظروف الحركة (السرعة، المجال).
+  </div></details>
+</div>
+
+<div class="footer">CTS Prep Series — بنك أسئلة المغناطيسية</div>
+</div>
+
+<!-- ================= TAB 4: FLASHCARDS ================= -->
+<div class="tab-panel" id="tab-flash">
+<div class="section-hero"><h2 class="hero-title">⚡ بطاقات المراجعة</h2><p>اضغط البطاقة لقلبها وعرض الجواب</p></div>
+
+<div class="progress"><div class="progress-fill" id="progressFill"></div></div>
+<div class="counter" id="counter">1 / 18</div>
+
+<div class="flashcard-wrap">
+  <div class="flashcard" id="flashcard" onclick="flipCard()">
+    <div class="face front">
+      <div class="q-label">سؤال</div>
+      <div class="q-text" id="qText"></div>
+      <div class="tap-hint">👆 اضغط لعرض الجواب</div>
+    </div>
+    <div class="face back">
+      <div class="a-label">جواب</div>
+      <div class="a-text" id="aText"></div>
+    </div>
+  </div>
+</div>
+
+<div class="fc-controls">
+  <button class="btn btn-prev" onclick="prevCard()">◀ السابق</button>
+  <button class="btn btn-shuffle" onclick="shuffleCards()">🔀</button>
+  <button class="btn btn-next" onclick="nextCard()">التالي ▶</button>
+</div>
+</div>
+
+<div class="footer">CTS Prep Series — المغناطيسية | الفيزياء العامة</div>
+
+</div>
+
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+});
+
+const cards = [
+  {q:"كم عدد الأقطاب التي يحتويها أي مغناطيس مهما كان شكله؟", a:"قطبان: شمالي (N) وجنوبي (S)"},
+  {q:"هل يمكن فصل قطبي المغناطيس عن بعضهما؟", a:"لا، إذا قُطعت قطعة مغناطيس فكل قطعة جديدة تكون لها قطبان شمالي وجنوبي"},
+  {q:"ما معادلة القوة المغناطيسية المؤثرة على شحنة متحركة؟", a:"F_B = qvB"},
+  {q:"باتجاه ماذا تكون القوة المغناطيسية بالنسبة للسرعة والمجال؟", a:"عمودية على كل من السرعة v والمجال المغناطيسي B معاً"},
+  {q:"ماذا يحدث للقوة المغناطيسية إذا تحرك الجسيم بموازاة المجال؟", a:"تصبح صفراً (F_B = 0)"},
+  {q:"ما وحدة قياس المجال المغناطيسي بالنظام الدولي؟", a:"التسلا (T)، وتُستخدم أيضاً الجاوس (G) حيث 1T=10⁴G"},
+  {q:"ما شكل مسار جسيم مشحون بمجال مغناطيسي منتظم عمودي على حركته؟", a:"مسار دائري"},
+  {q:"ما معادلة نصف قطر المسار الدائري لجسيم مشحون؟", a:"r = mv/(qB)"},
+  {q:"ما معادلة الزمن الدوري لحركة جسيم مشحون بمجال مغناطيسي؟", a:"T = 2πm/(qB)"},
+  {q:"من هما العالمان اللذان استنتجا قانون حساب المجال المغناطيسي لأي دارة؟", a:"بيوت وسافارت (Biot-Savart)"},
+  {q:"ما الصيغة التفاضلية لقانون بيوت-سافارت؟", a:"dB = (μ₀/4π)·I·ds·sinθ/r²"},
+  {q:"ما قيمة الثابت μ₀/4π؟", a:"10⁻⁷ Wb/A.m"},
+  {q:"ما معادلة المجال المغناطيسي لسلك مستقيم طويل عند مسافة a؟", a:"B = μ₀I/(2πa)"},
+  {q:"ما معادلة المجال المغناطيسي عند مركز ملف دائري؟", a:"B = μ₀NI/(2a)"},
+  {q:"ما معادلة العزم المغناطيسي لملف؟", a:"P_m = NIA"},
+  {q:"ما معادلة المجال المغناطيسي عند منتصف سولينويد طويل؟", a:"B = μ₀NI"},
+  {q:"كيف يُعرّف الفيض المغناطيسي عندما يكون B عمودياً على سطح؟", a:"Φ = B·A"},
+  {q:"ما قيمة الفيض المغناطيسي الكلي خلال أي سطح مغلق؟", a:"صفر دائماً، لعدم وجود أقطاب مغناطيسية منفردة"}
+];
+
+let currentIndex = 0;
+let isFlipped = false;
+
+function renderCard(){
+  document.getElementById('qText').textContent = cards[currentIndex].q;
+  document.getElementById('aText').textContent = cards[currentIndex].a;
+  document.getElementById('counter').textContent = (currentIndex+1) + ' / ' + cards.length;
+  document.getElementById('progressFill').style.width = ((currentIndex+1)/cards.length*100) + '%';
+  const card = document.getElementById('flashcard');
+  card.classList.remove('flipped');
+  isFlipped = false;
+}
+
+function flipCard(){
+  isFlipped = !isFlipped;
+  document.getElementById('flashcard').classList.toggle('flipped', isFlipped);
+}
+
+function nextCard(){
+  currentIndex = (currentIndex + 1) % cards.length;
+  renderCard();
+}
+
+function prevCard(){
+  currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+  renderCard();
+}
+
+function shuffleCards(){
+  for(let i = cards.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i+1));
+    [cards[i], cards[j]] = [cards[j], cards[i]];
+  }
+  currentIndex = 0;
+  renderCard();
+}
+
+renderCard();
+</script>
+
+</body>
+</html>

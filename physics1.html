@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الكهربائية — Electricity | CTS Physics Prep</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600;700&display=swap');
+:root{
+  --bg:#0D1117; --card:#161B22; --border:#2D3440;
+  --blue:#2563EB; --amber:#E8A000; --white:#E2E8F0; --muted:#8B96A5;
+  --green:#22c55e; --red:#ef4444;
+}
+*{box-sizing:border-box}
+html,body{margin:0; padding:0}
+body{background:var(--bg); color:var(--white); font-family:'Tajawal','Segoe UI',sans-serif; line-height:1.9; padding-bottom:70px}
+.en, .mono{font-family:'JetBrains Mono',monospace; color:#93c5fd; direction:ltr}
+.top-header{position:sticky; top:0; z-index:100; background:linear-gradient(135deg,#12213f,#0D1117); border-bottom:1px solid var(--blue); padding:14px 16px 0; text-align:center}
+.top-header h1{color:var(--amber); margin:0 0 3px; font-size:1.05rem}
+.top-header p{color:var(--muted); margin:0 0 12px; font-size:.74rem}
+.tabs{display:flex; gap:6px; overflow-x:auto; padding:0 10px 10px; scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab-btn{flex:0 0 auto; background:var(--card); color:var(--muted); border:1px solid var(--border); border-radius:20px; padding:8px 16px; font-family:'Tajawal'; font-size:.85rem; font-weight:700; cursor:pointer; white-space:nowrap; transition:.2s}
+.tab-btn.active{background:var(--blue); color:#fff; border-color:var(--blue)}
+.content-wrap{padding:16px 14px 10px; max-width:600px; margin:0 auto}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+h2{color:var(--blue); font-size:1.06rem; border-right:4px solid var(--amber); padding-right:10px; margin-top:28px; margin-bottom:10px}
+h3{color:var(--amber); font-size:.97rem; margin-top:18px; margin-bottom:8px}
+.card{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:14px 16px; margin-bottom:14px}
+ul{margin:8px 0; padding-right:20px}
+li{margin-bottom:6px}
+.key{color:var(--amber); font-weight:700}
+.formula{background:#0A0E14; border:1px dashed var(--blue); border-radius:8px; padding:10px 14px; text-align:center; font-family:'JetBrains Mono',monospace; color:#93c5fd; margin:10px 0; font-size:.92rem; direction:ltr}
+table{width:100%; border-collapse:collapse; margin:10px 0; font-size:.85rem}
+th,td{border:1px solid var(--border); padding:7px 8px; text-align:center}
+th{background:#1c2532; color:var(--amber)}
+.note{background:#1c1508; border-right:4px solid var(--amber); border-radius:8px; padding:10px 14px; margin:12px 0; font-size:.87rem}
+.imp{background:#0e1c2b; border-right:4px solid var(--blue); border-radius:8px; padding:10px 14px; margin:12px 0; font-size:.87rem}
+.compare-grid{display:flex; flex-direction:column; gap:10px}
+.compare-item{background:#0f1420; border-radius:10px; padding:10px 14px; border:1px solid var(--border)}
+.compare-item .title{color:var(--amber); font-weight:700; margin-bottom:4px}
+.section-hero{text-align:center; padding:16px 14px; border-radius:14px; background:linear-gradient(135deg,#12213f,#0D1117); border:1px solid var(--blue); margin-bottom:18px}
+.section-hero h2.hero-title{color:var(--amber); margin:0 0 4px; font-size:1.13rem; border:none; padding:0}
+.section-hero p{color:var(--muted); margin:0; font-size:.82rem}
+.badge{display:inline-block; background:var(--blue); color:#fff; padding:3px 12px; border-radius:20px; font-size:.75rem; margin-top:8px}
+.badge.amber{background:var(--amber); color:#000}
+.formula-box{background:#0A0E14; border:1px solid var(--blue); border-radius:8px; padding:10px 12px; margin:8px 0; font-family:'JetBrains Mono',monospace; color:#93c5fd; direction:ltr; text-align:center; font-size:.92rem}
+.formula-label{color:var(--amber); font-family:'Tajawal'; direction:rtl; font-size:.8rem; margin-bottom:4px; display:block}
+.q-card{background:var(--card); border:1px solid var(--border); border-radius:10px; padding:12px 14px; margin-bottom:12px}
+.q-num{color:var(--amber); font-weight:700; margin-left:4px}
+.options{list-style:none; padding:0; margin:8px 0 0}
+.options li{padding:7px 10px; margin-bottom:6px; border-radius:8px; background:#0f1420; border:1px solid var(--border); font-size:.9rem}
+details{margin-top:6px}
+summary{cursor:pointer; color:var(--blue); font-size:.85rem; font-weight:700; padding:4px 0}
+.answer-box{margin-top:6px; background:#0a1f14; border-right:3px solid var(--green); padding:8px 10px; border-radius:6px; font-size:.87rem}
+.correct{color:var(--green); font-weight:700}
+.open-q{font-size:.95rem; margin-bottom:4px}
+.exam-badge{display:inline-block; background:var(--amber); color:#000; font-size:.7rem; padding:2px 10px; border-radius:10px; font-weight:700; margin-bottom:8px}
+.section-title{background:var(--blue); color:#fff; padding:8px 14px; border-radius:10px; font-size:.98rem; margin-top:26px; margin-bottom:12px; text-align:center}
+.mini-toc{background:var(--card); border:1px solid var(--border); border-radius:10px; padding:12px 16px; margin-bottom:18px}
+.mini-toc a{color:var(--blue); display:block; padding:4px 0; text-decoration:none; font-size:.9rem}
+.progress{width:100%; background:var(--card); border-radius:20px; height:8px; margin-bottom:16px; overflow:hidden; border:1px solid var(--border)}
+.progress-fill{height:100%; background:var(--blue); width:0%; transition:width .3s}
+.counter{color:var(--muted); font-size:.85rem; margin-bottom:10px; text-align:center}
+.flashcard-wrap{width:100%; perspective:1200px; margin-bottom:16px}
+.flashcard{position:relative; width:100%; min-height:230px; transform-style:preserve-3d; transition:transform .5s; cursor:pointer}
+.flashcard.flipped{transform:rotateY(180deg)}
+.face{position:absolute; inset:0; backface-visibility:hidden; border-radius:16px; padding:22px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; border:1px solid var(--border)}
+.front{background:linear-gradient(135deg,#161B22,#0D1117); border-color:var(--blue)}
+.back{background:linear-gradient(135deg,#1c1508,#161B22); border-color:var(--amber); transform:rotateY(180deg); font-size:.94rem; line-height:1.7}
+.q-label, .a-label{font-size:.7rem; color:var(--muted); text-transform:uppercase; margin-bottom:10px; letter-spacing:1px}
+.q-text{font-size:1rem; font-weight:700; color:var(--white)}
+.a-text{color:var(--white)}
+.tap-hint{position:absolute; bottom:10px; font-size:.7rem; color:var(--muted)}
+.fc-controls{display:flex; gap:10px; width:100%}
+.btn{flex:1; padding:12px; border-radius:10px; border:none; font-size:.95rem; font-family:'Tajawal'; font-weight:700; cursor:pointer}
+.btn-prev{background:var(--card); color:var(--white); border:1px solid var(--border)}
+.btn-next{background:var(--blue); color:#fff}
+.btn-shuffle{background:var(--amber); color:#000; flex:0 0 auto; padding:12px 16px}
+.footer{text-align:center; color:var(--muted); font-size:.8rem; margin-top:40px}
+</style>
+
+<style>
+/* ===== Floating Subject Navigator (injected) ===== */
+.lecnav-fab{
+  position:fixed; bottom:18px; left:18px; z-index:999;
+  width:52px; height:52px; border-radius:50%;
+  background:linear-gradient(135deg,#2563EB,#1d4ed8);
+  color:#fff; border:none; box-shadow:0 4px 14px rgba(37,99,235,.5);
+  font-size:1.4rem; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  transition:transform .2s;
+}
+.lecnav-fab:active{transform:scale(.92)}
+.lecnav-overlay{
+  position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:1000;
+  display:none; align-items:flex-end; justify-content:center;
+  backdrop-filter:blur(2px);
+}
+.lecnav-overlay.open{display:flex}
+.lecnav-sheet{
+  width:100%; max-width:600px; background:#161B22; border:1px solid #2D3440;
+  border-bottom:none; border-radius:20px 20px 0 0; padding:16px 14px 26px;
+  max-height:80vh; overflow-y:auto; animation:lecnavUp .25s ease;
+  font-family:'Tajawal','Segoe UI',sans-serif;
+}
+@keyframes lecnavUp{from{transform:translateY(30px); opacity:0} to{transform:translateY(0); opacity:1}}
+.lecnav-sheet h3{
+  color:#E8A000; margin:0 0 12px; font-size:1.05rem; text-align:center;
+  border:none; padding:0;
+}
+.lecnav-home{
+  display:block; text-align:center; color:#93c5fd; text-decoration:none;
+  font-size:.85rem; margin-bottom:14px; padding:8px; border:1px dashed #2D3440;
+  border-radius:10px;
+}
+.lecnav-list{display:flex; flex-direction:column; gap:8px}
+.lecnav-item{
+  display:flex; align-items:center; gap:10px; padding:10px 12px;
+  border-radius:12px; background:#0f1420; border:1px solid #2D3440;
+  color:#E2E8F0; text-decoration:none; font-size:.9rem; transition:.15s;
+}
+.lecnav-item:active{background:#1c2532}
+.lecnav-item.current{border-color:#2563EB; background:#0e1c2b}
+.lecnav-item .lecnav-num{
+  flex:0 0 auto; width:30px; height:30px; border-radius:50%;
+  background:#2563EB; color:#fff; display:flex; align-items:center; justify-content:center;
+  font-weight:700; font-size:.85rem; font-family:'JetBrains Mono',monospace;
+}
+.lecnav-item.current .lecnav-num{background:#E8A000; color:#000}
+.lecnav-item .lecnav-title{flex:1}
+.lecnav-close{
+  position:absolute; top:10px; left:14px; background:none; border:none;
+  color:#8B96A5; font-size:1.3rem; cursor:pointer; padding:4px 8px;
+}
+.lecnav-sheet{position:relative}
+</style>
+
+</head>
+<body>
+
+<!-- ===== Floating Subject Navigator (injected) ===== -->
+<button class="lecnav-fab" id="lecnavFab" onclick="document.getElementById('lecnavOverlay').classList.add('open')" aria-label="التنقل بين الفصول">☰</button>
+<div class="lecnav-overlay" id="lecnavOverlay" onclick="if(event.target===this) this.classList.remove('open')">
+  <div class="lecnav-sheet">
+    <button class="lecnav-close" onclick="document.getElementById('lecnavOverlay').classList.remove('open')">✕</button>
+    <h3>📚 التنقل بين الفصول</h3>
+    <a class="lecnav-home" href="index.html">⌂ العودة للفهرس الرئيسي</a>
+    <div class="lecnav-list">
+  <a class="lecnav-item current" href="physics1.html"><span class="lecnav-num">⚡</span><span class="lecnav-title">الكهربائية</span></a>
+  <a class="lecnav-item" href="physics2.html"><span class="lecnav-num">🧲</span><span class="lecnav-title">المغناطيسية</span></a>
+  <a class="lecnav-item" href="physics3.html"><span class="lecnav-num">💡</span><span class="lecnav-title">الضوء</span></a>
+    </div>
+  </div>
+</div>
+
+
+<div class="top-header">
+  <h1>⚡ الكهربائية — Electricity</h1>
+  <p>مادة الفيزياء | فصل مستقل — CTS Physics Prep Series</p>
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="summary">📘 الملخص</button>
+    <button class="tab-btn" data-tab="cheat">🧾 ورقة غش</button>
+    <button class="tab-btn" data-tab="bank">❓ بنك أسئلة</button>
+    <button class="tab-btn" data-tab="flash">⚡ فلاش كاردز</button>
+  </div>
+</div>
+
+<div class="content-wrap">
+
+<!-- ================= TAB 1: SUMMARY ================= -->
+<div class="tab-panel active" id="tab-summary">
+
+<div class="section-hero">
+  <h2 class="hero-title">📘 الملخص المكثف</h2>
+  <p>الكهربائية الساكنة والتيار المستمر — كل النقاط الأساسية</p>
+</div>
+
+<div class="mini-toc">
+  <a href="#s1">① الشحنة والمادة</a>
+  <a href="#s2">② قانون كولوم</a>
+  <a href="#s3">③ المجال الكهربائي</a>
+  <a href="#s4">④ الجهد الكهربائي</a>
+  <a href="#s5">⑤ المكثفات</a>
+  <a href="#s6">⑥ التيار الكهربائي</a>
+  <a href="#s7">⑦ المقاومة وقانون أوم</a>
+  <a href="#s8">⑧ توصيل المقاومات والقدرة</a>
+  <a href="#s9">⑨ القوة الدافعة الكهربائية</a>
+</div>
+
+<h2 id="s1">① الشحنة والمادة — Charge and Matter</h2>
+<div class="card">
+  <ul>
+    <li>المادة تتكون من ذرات، والذرة تتكون من <span class="key">بروتونات (+)، إلكترونات (−)، نيوترونات (محايدة)</span>.</li>
+    <li>الشحنة خاصية أساسية بالمادة مثل الكتلة، ووحدتها <span class="key">الكولوم (C)</span>.</li>
+    <li>الشحنات <span class="key">متشابهة تتنافر، مختلفة تتجاذب</span>.</li>
+    <li>شحنة الإلكترون <span class="key">e = 1.6×10⁻¹⁹ C</span> — أصغر شحنة حرة بالكون.</li>
+    <li>الشحنة <span class="key">مكماة (Quantized)</span>: أي شحنة = مضاعف صحيح لـ e (مثل Ne حيث N عدد صحيح). لا يمكن وجود شحنة مثل 1.5e.</li>
+  </ul>
+  <table>
+    <tr><th>الجسيم</th><th>الرمز</th><th>الشحنة (C)</th><th>الكتلة (kg)</th></tr>
+    <tr><td>بروتون</td><td>p</td><td>+1.6×10⁻¹⁹</td><td>1.67×10⁻²⁷</td></tr>
+    <tr><td>نيوترون</td><td>n</td><td>0</td><td>1.67×10⁻²⁷</td></tr>
+    <tr><td>إلكترون</td><td>e</td><td>−1.6×10⁻¹⁹</td><td>1.67×10⁻³¹</td></tr>
+  </table>
+  <h3>تصنيف المواد حسب التوصيل</h3>
+  <div class="compare-grid">
+    <div class="compare-item"><div class="title">موصلات (Conductors)</div>تملك أعداد كبيرة من الإلكترونات الحرة، تسمح بحركة الشحنات (النحاس، الحديد، الذهب، المحاليل الملحية).</div>
+    <div class="compare-item"><div class="title">عوازل (Insulators)</div>لا تملك شحنات حرة، لا تسمح بحركة الشحنات (الزجاج، المطاط، الخشب).</div>
+    <div class="compare-item"><div class="title">أشباه موصلات (Semiconductors)</div>متوسطة بين الموصلات والعوازل (السيليكون، الجرمانيوم). يمكن تحسين توصيلها بإضافة شوائب (Doping) مثل البورون أو الفوسفور.</div>
+  </div>
+</div>
+
+<h2 id="s2">② قانون كولوم — Coulomb's Law</h2>
+<div class="card">
+  <p>القوة الناشئة بين شحنتين نقطيتين تتناسب طردياً مع حاصل ضرب الشحنتين، وعكسياً مع مربع المسافة بينهما.</p>
+  <div class="formula">F = K·q₁·q₂ / r²</div>
+  <ul>
+    <li><span class="key">K</span> ثابت كولوم، يعتمد على الوسط المحيط. في الفراغ: <span class="key">K = 9×10⁹ N·m²/C²</span></li>
+    <li><span class="key">K = 1/(4πε₀)</span> حيث ε₀ ثابت نفاذية الفراغ = <span class="key">8.85×10⁻¹² C²/N·m²</span></li>
+    <li>عند وجود وسط غير الفراغ: نستعيض ε₀ بثابت نفاذية الوسط.</li>
+    <li>إذا كانت الشحنتان متشابهتين → القوة تنافر. مختلفتين → القوة تجاذب.</li>
+  </ul>
+  <div class="note">📌 عند وجود أكثر من شحنتين: القوة الكلية المؤثرة على شحنة = المجموع المتجه (Vector Sum) لكل القوى المؤثرة عليها من باقي الشحنات منفردة. F₁ = F₁₂ + F₁₃ + F₁₄ + ...</div>
+</div>
+
+<h2 id="s3">③ المجال الكهربائي — Electric Field</h2>
+<div class="card">
+  <ul>
+    <li>المجال هو نفوذ أو تأثير جسم مشحون بالفراغ المحيط به. أي شحنة تقع ضمن هذا المجال تتأثر بقوة تجاذب أو تنافر.</li>
+    <li>يُكتشف المجال بوضع <span class="key">شحنة اختبار (test charge) q₀</span> صغيرة وموجبة.</li>
+  </ul>
+  <div class="formula-box"><span class="formula-label">شدة المجال الكهربائي</span>E = F / q₀</div>
+  <div class="formula-box"><span class="formula-label">المجال الناتج من شحنة نقطية q عند مسافة r</span>E = K·q / r²</div>
+  <ul>
+    <li>وحدة المجال: <span class="key">N/C</span> (نتون لكل كولوم).</li>
+    <li>المجال لا يعتمد على شحنة الاختبار q₀، بل على الشحنة المصدر q والمسافة r فقط.</li>
+    <li><span class="key">خطوط المجال (Lines of force)</span>: تخرج من الشحنة الموجبة وتتجه نحو الشحنة السالبة.</li>
+    <li>اتجاه المجال = اتجاه القوة المؤثرة على شحنة اختبار موجبة.</li>
+    <li>بصفيحة موصلة مشحونة كبيرة: خطوط المجال عمودية على السطح ومتوازية ومتساوية القيمة لكل النقاط القريبة من الصفيحة.</li>
+  </ul>
+</div>
+
+<h2 id="s4">④ الجهد الكهربائي — Electric Potential</h2>
+<div class="card">
+  <ul>
+    <li>الشحنة الموضوعة بمجال كهربائي تكتسب <span class="key">طاقة وضع كهربائية</span> تعتمد على موقعها.</li>
+    <li><span class="key">الجهد الكهربائي V</span> = طاقة الوضع الكهربائية لكل وحدة شحنة.</li>
+  </ul>
+  <div class="formula-box"><span class="formula-label">فرق الجهد بين نقطتين A و B</span>V_AB = V_A − V_B = W_AB / q₀</div>
+  <ul><li>وحدته: <span class="key">فولت (V) = جول/كولوم</span></li></ul>
+  <div class="formula-box"><span class="formula-label">في مجال منتظم E بين نقطتين تفصل بينهما مسافة d</span>E = V / d</div>
+  <div class="formula-box"><span class="formula-label">جهد نقطة تبعد r عن شحنة نقطية q</span>V = K·q / r</div>
+  <div class="formula-box"><span class="formula-label">جهد نقطة ناتج عن n شحنات نقطية (كمية سلمية غير متجهة)</span>V_P = V₁ + V₂ + ... + Vₙ = K·Σ(qᵢ/rᵢ)</div>
+  <div class="note">📌 الشحنة الموجبة تتحرك دائماً من مناطق الجهد العالي إلى مناطق الجهد المنخفض.</div>
+</div>
+
+<h2 id="s5">⑤ المكثفات — Capacitors</h2>
+<div class="card">
+  <ul>
+    <li>أجهزة تُستخدم لتخزين الشحنات الكهربائية. تطبيقاتها: ضبط تردد أجهزة الاستقبال، فلاتر بمصادر الإمداد، مصدر تخزين طاقة.</li>
+    <li>يتكون المكثف من موصلين يفصل بينهما مادة عازلة.</li>
+  </ul>
+  <div class="formula-box"><span class="formula-label">سعة المكثف</span>C = Q / V</div>
+  <ul><li>وحدة السعة: <span class="key">الفاراد (F) = C/V</span> — وحدة كبيرة، لذا نستخدم µF=10⁻⁶F، nF=10⁻⁹F، pF=10⁻¹²F</li></ul>
+  <div class="formula-box"><span class="formula-label">مكثف متوازي الألواح</span>C = ε₀·A / d</div>
+  <ul>
+    <li><span class="key">A</span> = مساحة كل لوح، <span class="key">d</span> = المسافة بين اللوحين.</li>
+    <li>السعة تزداد بزيادة مساحة اللوح، وتقل بزيادة المسافة بينهما.</li>
+  </ul>
+  <h3>توصيل المكثفات</h3>
+  <div class="compare-grid">
+    <div class="compare-item"><div class="title">على التوازي</div>فرق الجهد لا يتجزأ على المكثفات، الشحنة تتجزأ.<br><span class="mono">C_eq = C₁ + C₂ + ...</span></div>
+    <div class="compare-item"><div class="title">على التوالي</div>الشحنة لا تتجزأ، فرق الجهد يتجزأ.<br><span class="mono">1/C_eq = 1/C₁ + 1/C₂ + ...</span></div>
+  </div>
+</div>
+
+<h2 id="s6">⑥ التيار الكهربائي — Electric Current</h2>
+<div class="card">
+  <ul>
+    <li>حركة الشحنات داخل مادة الموصل تحت تأثير مجال كهربائي تُعطي ما يُسمى بالتيار الكهربائي.</li>
+    <li>التيار = كمية الشحنة التي تمر خلال مقطع سلك بالثانية الواحدة.</li>
+  </ul>
+  <div class="formula-box"><span class="formula-label">شدة التيار</span>I = Δq/Δt = dq/dt</div>
+  <ul>
+    <li>وحدته: <span class="key">الأمبير (A) = كولوم/ثانية</span></li>
+    <li>التيار كمية سلمية (Scalar). اتجاهه التقليدي دائماً عكس حركة الإلكترونات (من الطرف الموجب إلى السالب بالدارة الخارجية).</li>
+  </ul>
+  <div class="formula-box"><span class="formula-label">كثافة التيار J</span>J = I/A = nev</div>
+</div>
+
+<h2 id="s7">⑦ المقاومة وقانون أوم — Resistance & Ohm's Law</h2>
+<div class="card">
+  <div class="formula-box"><span class="formula-label">علاقة كثافة التيار بالمجال</span>J = σE</div>
+  <ul><li><span class="key">σ</span> الموصلية الكهربائية (Electrical conductivity). مقلوبها <span class="key">ρ</span> المقاومة النوعية (Resistivity).</li></ul>
+  <h3>العوامل المؤثرة بالمقاومة الكهربائية لموصل</h3>
+  <ul>
+    <li>طول السلك <span class="key">ℓ</span> (تناسب طردي)</li>
+    <li>مساحة مقطع السلك <span class="key">A</span> (تناسب عكسي)</li>
+    <li>المقاومة النوعية لمادة السلك <span class="key">ρ</span></li>
+  </ul>
+  <div class="formula-box"><span class="formula-label">المقاومة</span>R = ρ·ℓ / A</div>
+  <ul><li>وحدتها: <span class="key">الأوم (Ω) = V/A</span></li></ul>
+  <div class="imp">
+    <b>قانون أوم:</b> "التيار الكهربائي والجهد الكهربائي يتناسبان طردياً" — المواد التي تحقق هذا القانون تُسمى <span class="key">مواد أومية (Ohmic)</span>، وما لا يحققه <span class="key">مواد غير أومية (Non-ohmic)</span>. قانون أوم قانون تجريبي ينطبق على عدد محدد من المواد فقط.
+  </div>
+  <div class="formula-box"><span class="formula-label">قانون أوم</span>V = I·R</div>
+</div>
+
+<h2 id="s8">⑧ توصيل المقاومات والقدرة الكهربائية</h2>
+<div class="card">
+  <div class="compare-grid">
+    <div class="compare-item"><div class="title">توصيل التوالي (Series)</div>التيار ثابت لا يتجزأ، فرق الجهد يتوزع على المقاومات.<br><span class="mono">R_eq = R₁ + R₂ + ...</span></div>
+    <div class="compare-item"><div class="title">توصيل التوازي (Parallel)</div>فرق الجهد ثابت لا يتجزأ، التيار يتوزع على المقاومات.<br><span class="mono">1/R_eq = 1/R₁ + 1/R₂ + ...</span></div>
+  </div>
+  <h3>القدرة الكهربائية P</h3>
+  <ul><li>معدل التغير الزمني للطاقة الكهربائية المستهلكة = حاصل ضرب فرق الجهد في شدة التيار.</li></ul>
+  <div class="formula-box"><span class="formula-label">صيغ القدرة</span>P = I·V &nbsp;|&nbsp; P = I²·R &nbsp;|&nbsp; P = V²/R</div>
+  <ul>
+    <li>وحدتها: <span class="key">الواط (W) = جول/ثانية</span></li>
+    <li>الطاقة المستهلكة = القدرة × الزمن</li>
+  </ul>
+</div>
+
+<h2 id="s9">⑨ القوة الدافعة الكهربائية — EMF</h2>
+<div class="card">
+  <ul>
+    <li><span class="key">القوة الدافعة الكهربائية (ε)</span>: الشغل المبذول لنقل وحدة الشحنات بكامل الدارة (خارج وداخل المصدر).</li>
+    <li><span class="key">فرق الجهد V</span>: الشغل المبذول لنقل وحدة الشحنات بين نقطتين بالدارة خارج المصدر فقط.</li>
+    <li>القوة الدافعة تنقسم لجهدين: جهد خارجي (خلال المقاومة الخارجية R) وجهد داخلي (خلال المقاومة الداخلية للمصدر r).</li>
+  </ul>
+  <div class="formula-box"><span class="formula-label">القوة الدافعة الكهربائية</span>ε = I·R + I·r = I(R + r)</div>
+  <div class="formula-box"><span class="formula-label">التيار بالدارة</span>I = ε / (R + r)</div>
+</div>
+
+<div class="footer">CTS Prep Series — ملخص الكهربائية | الفيزياء العامة</div>
+</div>
+
+<!-- ================= TAB 2: CHEAT SHEET ================= -->
+<div class="tab-panel" id="tab-cheat">
+<div class="section-hero"><h2 class="hero-title">🧾 ورقة الغش</h2><p>كل المعادلات والقوانين بدون شرح — للمراجعة السريعة قبل الامتحان</p></div>
+
+<h2>الشحنة</h2>
+<div class="card">
+  <div class="formula-box">e = 1.6×10⁻¹⁹ C</div>
+</div>
+
+<h2>قانون كولوم</h2>
+<div class="card">
+  <div class="formula-box">F = K·q₁·q₂ / r²</div>
+  <div class="formula-box">K = 1/(4πε₀) = 9×10⁹ N·m²/C²</div>
+  <div class="formula-box">ε₀ = 8.85×10⁻¹² C²/N·m²</div>
+</div>
+
+<h2>المجال الكهربائي</h2>
+<div class="card">
+  <div class="formula-box">E = F / q₀</div>
+  <div class="formula-box">E = K·q / r²</div>
+</div>
+
+<h2>الجهد الكهربائي</h2>
+<div class="card">
+  <div class="formula-box">V = W / q₀</div>
+  <div class="formula-box">E = V / d  (مجال منتظم)</div>
+  <div class="formula-box">V = K·q / r</div>
+  <div class="formula-box">V_P = ΣVᵢ = K·Σ(qᵢ/rᵢ)</div>
+</div>
+
+<h2>المكثفات</h2>
+<div class="card">
+  <div class="formula-box">C = Q / V</div>
+  <div class="formula-box">C = ε₀·A / d  (متوازي الألواح)</div>
+  <div class="formula-box">توازي: C_eq = C₁ + C₂ + ...</div>
+  <div class="formula-box">توالي: 1/C_eq = 1/C₁ + 1/C₂ + ...</div>
+  <div class="formula-box">1 µF = 10⁻⁶ F | 1 nF = 10⁻⁹ F | 1 pF = 10⁻¹² F</div>
+</div>
+
+<h2>التيار</h2>
+<div class="card">
+  <div class="formula-box">I = Δq / Δt</div>
+  <div class="formula-box">J = I / A = n·e·v</div>
+</div>
+
+<h2>المقاومة وقانون أوم</h2>
+<div class="card">
+  <div class="formula-box">J = σ·E</div>
+  <div class="formula-box">R = ρ·ℓ / A</div>
+  <div class="formula-box">V = I·R</div>
+  <div class="formula-box">توالي: R_eq = R₁ + R₂ + ...</div>
+  <div class="formula-box">توازي: 1/R_eq = 1/R₁ + 1/R₂ + ...</div>
+</div>
+
+<h2>القدرة الكهربائية</h2>
+<div class="card">
+  <div class="formula-box">P = I·V</div>
+  <div class="formula-box">P = I²·R</div>
+  <div class="formula-box">P = V²/R</div>
+  <div class="formula-box">الطاقة = القدرة × الزمن</div>
+</div>
+
+<h2>القوة الدافعة الكهربائية</h2>
+<div class="card">
+  <div class="formula-box">ε = I·R + I·r = I(R+r)</div>
+  <div class="formula-box">I = ε / (R+r)</div>
+</div>
+
+<h2>ثوابت مهمة</h2>
+<div class="card">
+  <table>
+    <tr><th>الرمز</th><th>القيمة</th></tr>
+    <tr><td>e (شحنة إلكترون)</td><td>1.6×10⁻¹⁹ C</td></tr>
+    <tr><td>K (ثابت كولوم)</td><td>9×10⁹ N·m²/C²</td></tr>
+    <tr><td>ε₀ (نفاذية الفراغ)</td><td>8.85×10⁻¹² C²/N·m²</td></tr>
+    <tr><td>كتلة البروتون/النيوترون</td><td>1.67×10⁻²⁷ kg</td></tr>
+    <tr><td>كتلة الإلكترون</td><td>1.67×10⁻³¹ kg</td></tr>
+  </table>
+</div>
+
+<div class="footer">CTS Prep Series — ورقة غش الكهربائية</div>
+</div>
+
+<!-- ================= TAB 3: QUESTION BANK ================= -->
+<div class="tab-panel" id="tab-bank">
+<div class="section-hero"><h2 class="hero-title">❓ بنك الأسئلة</h2><p>اختيار من متعدد، أسئلة مفتوحة، ومحاكاة امتحان</p></div>
+
+<div class="section-title">① اختيار من متعدد</div>
+
+<div class="q-card">
+  <p class="open-q"><span class="q-num">1.</span> ما وحدة قياس الشحنة الكهربائية بالنظام الدولي؟</p>
+  <ul class="options">
+    <li>A) نيوتن</li><li>B) كولوم</li><li>C) فولت</li><li>D) أمبير</li>
+  </ul>
+  <details><summary>عرض الجواب</summary><div class="answer-box"><span class="correct">الجواب: B) كولوم (C)</span></div></details>
+</div>
+
+<div class="q-card">
+  <p class="open-q"><span class="q-num">2.</span> إذا تضاعفت المسافة بين شحنتين نقطيتين، فإن قوة كولوم بينهما:</p>
+  <ul class="options">
+    <li>A) تتضاعف</li><li>B) تقل للنصف</li><li>C) تقل لثمن قيمتها الأصلية... تقل لربع قيمتها</li><li>D) تبقى ثابتة</li>
+  </ul>
+  <details><summary>عرض الجواب</summary><div class="answer-box"><span class="correct">الجواب: C) تقل لربع قيمتها</span> — لأن F تتناسب عكسياً مع r²</div></details>
+</div>
+
+<div class="q-card">
+  <p class="open-q"><span class="q-num">3.</span> شحنة الاختبار (test charge) المستخدمة لتحديد المجال الكهربائي يجب أن تكون:</p>
+  <ul class="options">
+    <li>A) كبيرة وسالبة</li><li>B) صغيرة جداً وموجبة</li><li>C) كبيرة وموجبة</li><li>D) لا يهم نوعها أو مقدارها</li>
+  </ul>
+  <details><summary>عرض الجواب</summary><div class="answer-box"><span class="correct">الجواب: B) صغيرة جداً وموجبة</span></div></details>
+</div>
+
+<div class="q-card">
+  <p class="open-q"><span class="q-num">4.</span> عند توصيل مكثفين على التوالي، أي كمية تبقى ثابتة (لا تتجزأ)؟</p>
+  <ul class="options">
+    <li>A) فرق الجهد</li><li>B) الشحنة</li><li>C) السعة</li><li>D) المقاومة</li>
+  </ul>
+  <details><summary>عرض الجواب</summary><div class="answer-box"><span class="correct">الجواب: B) الشحنة</span> — بالتوالي الشحنة لا تتجزأ، وفرق الجهد يتوزع</div></details>
+</div>
+
+<div class="q-card">
+  <p class="open-q"><span class="q-num">5.</span> المادة التي تحقق قانون أوم (تناسب طردي بين V وI) تُسمى:</p>
+  <ul class="options">
+    <li>A) عازلة</li><li>B) شبه موصلة</li><li>C) أومية</li><li>D) مغناطيسية</li>
+  </ul>
+  <details><summary>عرض الجواب</summary><div class="answer-box"><span class="correct">الجواب: C) أومية (Ohmic)</span></div></details>
+</div>
+
+<div class="q-card">
+  <p class="open-q"><span class="q-num">6.</span> زيادة طول السلك الموصل مع بقاء باقي العوامل ثابتة يؤدي إلى:</p>
+  <ul class="options">
+    <li>A) زيادة المقاومة</li><li>B) نقصان المقاومة</li><li>C) بقاء المقاومة ثابتة</li><li>D) انعدام المقاومة</li>
+  </ul>
+  <details><summary>عرض الجواب</summary><div class="answer-box"><span class="correct">الجواب: A) زيادة المقاومة</span> — R تتناسب طردياً مع ℓ</div></details>
+</div>
+
+<div class="q-card">
+  <p class="open-q"><span class="q-num">7.</span> بتوصيل المقاومات على التوازي، أي كمية تتوزع على المقاومات؟</p>
+  <ul class="options">
+    <li>A) فرق الجهد</li><li>B) شدة التيار</li><li>C) القدرة فقط</li><li>D) لا شيء يتوزع</li>
+  </ul>
+  <details><summary>عرض الجواب</summary><div class="answer-box"><span class="correct">الجواب: B) شدة التيار</span> — فرق الجهد ثابت بالتوازي والتيار يتوزع</div></details>
+</div>
+
+<div class="q-card">
+  <p class="open-q"><span class="q-num">8.</span> الفرق الأساسي بين القوة الدافعة الكهربائية (ε) وفرق الجهد (V) هو:</p>
+  <ul class="options">
+    <li>A) لا فرق بينهما إطلاقاً</li><li>B) ε تشمل كامل الدارة (داخل وخارج المصدر)، وV خارج المصدر فقط</li><li>C) V أكبر من ε دائماً</li><li>D) ε تقاس بالأمبير</li>
+  </ul>
+  <details><summary>عرض الجواب</summary><div class="answer-box"><span class="correct">الجواب: B</span></div></details>
+</div>
+
+<div class="section-title">② أسئلة مفتوحة</div>
+
+<div class="q-card">
+  <p class="open-q"><b>1.</b> اشرح لماذا تُعتبر الشحنة الكهربائية كمية "مكماة" (Quantized)، ووضح بمثال عددي.</p>
+  <details><summary>عرض نموذج الجواب</summary><div class="answer-box">لأن أي شحنة موجودة بالطبيعة هي دائماً مضاعف صحيح لشحنة الإلكترون e=1.6×10⁻¹⁹C، أي Q=Ne حيث N عدد صحيح. مثال: شحنة مقدارها 3.2×10⁻¹⁹C = 2e (N=2) وهي ممكنة، لكن شحنة مقدارها 2.4×10⁻¹⁹C (أي 1.5e) غير ممكنة لأن N ليس عدداً صحيحاً.</div></details>
+</div>
+
+<div class="q-card">
+  <p class="open-q"><b>2.</b> وضح الفرق بين الموصلات والعوازل وأشباه الموصلات من ناحية قدرتها على تمرير الشحنات.</p>
+  <details><summary>عرض نموذج الجواب</summary><div class="answer-box">الموصلات تملك أعداداً كبيرة من الإلكترونات الحرة فتسمح بحركة الشحنات بسهولة (كالمعادن). العوازل لا تملك شحنات حرة فلا تسمح بحركتها (كالزجاج والمطاط). أشباه الموصلات وسط بين الاثنين، ويمكن التحكم بموصليتها عبر إضافة شوائب (Doping) كالبورون أو الفوسفور.</div></details>
+</div>
+
+<div class="q-card">
+  <p class="open-q"><b>3.</b> لماذا لا يعتمد المجال الكهربائي E الناتج عن شحنة مصدر q على مقدار شحنة الاختبار q₀؟</p>
+  <details><summary>عرض نموذج الجواب</summary><div class="answer-box">لأن المجال E = F/q₀، وبما أن القوة F تتناسب طردياً مع q₀ (حسب قانون كولوم F=Kqq₀/r²)، فعند القسمة على q₀ يُلغى تأثيره، ويبقى E معتمداً فقط على الشحنة المصدر q والمسافة r، وهما ما يحددان طبيعة المجال بتلك النقطة.</div></details>
+</div>
+
+<div class="q-card">
+  <p class="open-q"><b>4.</b> اشرح كيف تتغير سعة مكثف متوازي الألواح عند زيادة المسافة بين اللوحين، وعند زيادة مساحة اللوح.</p>
+  <details><summary>عرض نموذج الجواب</summary><div class="answer-box">حسب العلاقة C=ε₀A/d: زيادة المسافة d تؤدي لنقصان السعة C (تناسب عكسي)، بينما زيادة مساحة اللوح A تؤدي لزيادة السعة C (تناسب طردي).</div></details>
+</div>
+
+<div class="q-card">
+  <p class="open-q"><b>5.</b> ما العوامل الثلاثة المؤثرة بمقاومة الموصل؟ اشرح تأثير كل عامل.</p>
+  <details><summary>عرض نموذج الجواب</summary><div class="answer-box">1) طول السلك ℓ: تناسب طردي، كلما طال السلك زادت المقاومة. 2) مساحة مقطع السلك A: تناسب عكسي، كلما زادت المساحة قلّت المقاومة. 3) المقاومة النوعية ρ لمادة السلك: خاصية بالمادة نفسها تختلف من مادة لأخرى (كالنحاس مقابل الحديد).</div></details>
+</div>
+
+<div class="section-title">③ محاكاة امتحان</div>
+<div class="q-card">
+  <span class="exam-badge">⏱ محاكاة — 25 دقيقة</span>
+  <p style="font-size:.9rem; color:var(--muted)">أجب بدون فتح الملخص. راجع الأجوبة بالنهاية فقط.</p>
+
+  <p class="open-q"><b>س1 (3 علامات):</b> نواة ذرة كربون تحتوي 6 بروتونات. احسب شحنة النواة.</p>
+  <p class="open-q"><b>س2 (5 علامات):</b> كرتان بلاستيك تحمل الأولى شحنة −4.3 µC والثانية +6 µC، وُضعتا على مسافة 0.12m. احسب مقدار القوة المتبادلة بينهما ووضح نوعها (تجاذب أم تنافر).</p>
+  <p class="open-q"><b>س3 (4 علامات):</b> شحنتان q₁=7.0µC عند نقطة الأصل وq₂=−5.0µC تبعد 30cm على محور السينات. أوجد المجال الكهربائي الكلي عند نقطة تبعد 40cm على محور الصادات عن نقطة الأصل (بإيجاز طريقة الحل).</p>
+  <p class="open-q"><b>س4 (4 علامات):</b> سلك نحاسي طوله 100m ومساحة مقطعه 1mm² يحمل تياراً شدته 20A، ومقاومته النوعية 1.72×10⁻⁸ Ω·m. احسب شدة المجال الكهربائي وفرق الجهد بين طرفي السلك والمقاومة الكهربائية.</p>
+  <p class="open-q"><b>س5 (3 علامات):</b> ما الفرق الجوهري بين القوة الدافعة الكهربائية وفرق الجهد؟ اشرح مع ذكر العلاقة الرياضية بينهما.</p>
+
+  <details><summary>📖 عرض نموذج الحل الكامل</summary>
+  <div class="answer-box">
+  <b>س1:</b> q = 6 × 1.6×10⁻¹⁹ = 9.6×10⁻¹⁹ C<br><br>
+  <b>س2:</b> F = K|q₁q₂|/r² = 9×10⁹ × (4.3×10⁻⁶)(6×10⁻⁶) / (0.12)² ≈ 16.1 N، والقوة تجاذب لأن الشحنتين مختلفتان بالإشارة.<br><br>
+  <b>س3:</b> نحسب E₁ الناتج عن q₁ وE₂ الناتج عن q₂ كل على حدة باستخدام E=Kq/r²، ثم نجمعهما متجهياً (بمركبات x وy) للحصول على المجال الكلي عند النقطة P.<br><br>
+  <b>س4:</b> E = ρ(I/A) = 1.72×10⁻⁸ × (20/10⁻⁶) = 0.344 V/m. V = E×ℓ = 0.344×100 = 34.4V. R = V/I = 34.4/20 = 1.72Ω.<br><br>
+  <b>س5:</b> القوة الدافعة الكهربائية ε هي الشغل المبذول لنقل وحدة الشحنات بكامل الدارة (داخل وخارج المصدر)، بينما فرق الجهد V هو الشغل المبذول لنقل وحدة الشحنات بين نقطتين بالدارة خارج المصدر فقط. العلاقة بينهما: ε = I(R+r) = V + I·r، حيث V=IR هو الجهد الخارجي وI·r هو الهبوط الداخلي بالمصدر.
+  </div></details>
+</div>
+
+<div class="footer">CTS Prep Series — بنك أسئلة الكهربائية</div>
+</div>
+
+<!-- ================= TAB 4: FLASHCARDS ================= -->
+<div class="tab-panel" id="tab-flash">
+<div class="section-hero"><h2 class="hero-title">⚡ بطاقات المراجعة</h2><p>اضغط البطاقة لقلبها وعرض الجواب</p></div>
+
+<div class="progress"><div class="progress-fill" id="progressFill"></div></div>
+<div class="counter" id="counter">1 / 24</div>
+
+<div class="flashcard-wrap">
+  <div class="flashcard" id="flashcard" onclick="flipCard()">
+    <div class="face front">
+      <div class="q-label">سؤال</div>
+      <div class="q-text" id="qText"></div>
+      <div class="tap-hint">👆 اضغط لعرض الجواب</div>
+    </div>
+    <div class="face back">
+      <div class="a-label">جواب</div>
+      <div class="a-text" id="aText"></div>
+    </div>
+  </div>
+</div>
+
+<div class="fc-controls">
+  <button class="btn btn-prev" onclick="prevCard()">◀ السابق</button>
+  <button class="btn btn-shuffle" onclick="shuffleCards()">🔀</button>
+  <button class="btn btn-next" onclick="nextCard()">التالي ▶</button>
+</div>
+</div>
+
+<div class="footer">CTS Prep Series — الكهربائية | الفيزياء العامة</div>
+
+</div>
+
+<script>
+const cards = [
+  {q:"كم قيمة شحنة الإلكترون؟", a:"e = 1.6×10⁻¹⁹ كولوم"},
+  {q:"ما معنى أن الشحنة 'مكماة' (Quantized)؟", a:"أي شحنة موجودة هي مضاعف صحيح لشحنة الإلكترون: Q=Ne"},
+  {q:"ما نص قانون كولوم؟", a:"القوة بين شحنتين تتناسب طردياً مع حاصل ضربهما وعكسياً مع مربع المسافة بينهما: F=Kq₁q₂/r²"},
+  {q:"كم قيمة ثابت كولوم K بالفراغ؟", a:"K = 9×10⁹ N.m²/C²"},
+  {q:"ما العلاقة بين K وε₀؟", a:"K = 1/(4πε₀)"},
+  {q:"كيف تُعرّف شدة المجال الكهربائي E؟", a:"E = F/q₀، القوة المؤثرة على شحنة اختبار موجبة مقسومة على مقدار تلك الشحنة"},
+  {q:"ما معادلة المجال الكهربائي الناتج عن شحنة نقطية؟", a:"E = Kq/r²"},
+  {q:"بأي اتجاه تخرج خطوط المجال الكهربائي؟", a:"من الشحنة الموجبة وتتجه نحو الشحنة السالبة"},
+  {q:"كيف يُعرّف الجهد الكهربائي V عند نقطة؟", a:"طاقة الوضع الكهربائية لكل وحدة شحنة عند تلك النقطة"},
+  {q:"ما معادلة فرق الجهد بمجال منتظم؟", a:"E = V/d"},
+  {q:"ما معادلة سعة المكثف؟", a:"C = Q/V"},
+  {q:"ما معادلة سعة مكثف متوازي الألواح؟", a:"C = ε₀A/d"},
+  {q:"كيف تُحسب السعة المكافئة لمكثفات على التوازي؟", a:"C_eq = C₁ + C₂ + ... (تُجمع مباشرة)"},
+  {q:"كيف تُحسب السعة المكافئة لمكثفات على التوالي؟", a:"1/C_eq = 1/C₁ + 1/C₂ + ... (مقلوب المجموع)"},
+  {q:"ما معادلة شدة التيار الكهربائي؟", a:"I = Δq/Δt"},
+  {q:"ما وحدة قياس شدة التيار؟", a:"الأمبير (A) = كولوم/ثانية"},
+  {q:"ما نص قانون أوم؟", a:"التيار والجهد يتناسبان طردياً بالمواد الأومية: V=IR"},
+  {q:"ما معادلة المقاومة بدلالة الأبعاد الهندسية؟", a:"R = ρℓ/A"},
+  {q:"ما العوامل المؤثرة بمقاومة الموصل؟", a:"طول السلك ℓ، مساحة المقطع A، المقاومة النوعية ρ لمادة السلك"},
+  {q:"كيف تُحسب المقاومة المكافئة على التوالي؟", a:"R_eq = R₁ + R₂ + ... (تُجمع مباشرة)"},
+  {q:"كيف تُحسب المقاومة المكافئة على التوازي؟", a:"1/R_eq = 1/R₁ + 1/R₂ + ... (مقلوب المجموع)"},
+  {q:"ما الصيغ الثلاث لحساب القدرة الكهربائية؟", a:"P=IV، P=I²R، P=V²/R"},
+  {q:"ما الفرق بين القوة الدافعة الكهربائية وفرق الجهد؟", a:"ε تشمل كامل الدارة (داخل وخارج المصدر)، V فقط خارج المصدر"},
+  {q:"ما معادلة القوة الدافعة الكهربائية الكاملة؟", a:"ε = I(R+r) حيث R المقاومة الخارجية وr المقاومة الداخلية للمصدر"}
+];
+
+let currentIndex = 0;
+let isFlipped = false;
+
+function renderCard(){
+  document.getElementById('qText').textContent = cards[currentIndex].q;
+  document.getElementById('aText').textContent = cards[currentIndex].a;
+  document.getElementById('counter').textContent = (currentIndex+1) + ' / ' + cards.length;
+  document.getElementById('progressFill').style.width = ((currentIndex+1)/cards.length*100) + '%';
+  const card = document.getElementById('flashcard');
+  card.classList.remove('flipped');
+  isFlipped = false;
+}
+
+function flipCard(){
+  isFlipped = !isFlipped;
+  document.getElementById('flashcard').classList.toggle('flipped', isFlipped);
+}
+
+function nextCard(){
+  currentIndex = (currentIndex + 1) % cards.length;
+  renderCard();
+}
+
+function prevCard(){
+  currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+  renderCard();
+}
+
+function shuffleCards(){
+  for(let i = cards.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i+1));
+    [cards[i], cards[j]] = [cards[j], cards[i]];
+  }
+  currentIndex = 0;
+  renderCard();
+}
+
+renderCard();
+</script>
+
+</div>
+
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+});
+</script>
+
+</body>
+</html>
